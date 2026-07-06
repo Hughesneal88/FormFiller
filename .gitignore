@@ -1,0 +1,4 @@
+/browsers/
+.venv/
+__pycache__/
+*.pyc

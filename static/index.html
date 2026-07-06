@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Auto-Filler Dashboard</title>
+    <!-- Google Fonts Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <i class="fa-solid fa-wand-magic-sparkles logo-icon"></i>
+                <h2>SurveyFiller</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" data-tab="dashboard-tab">
+                    <i class="fa-solid fa-chart-pie"></i> Dashboard
+                </button>
+                <button class="nav-btn" data-tab="config-tab">
+                    <i class="fa-solid fa-gears"></i> Survey Configuration
+                </button>
+                <button class="nav-btn" data-tab="generator-tab">
+                    <i class="fa-solid fa-list-check"></i> Submissions Queue
+                </button>
+                <button class="nav-btn" data-tab="logs-tab">
+                    <i class="fa-solid fa-terminal"></i> Live Logs
+                </button>
+            </nav>
+            <div class="connection-status" id="connection-status">
+                <span class="status-dot green"></span> Connected
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="search-bar-container">
+                    <label for="survey-url-input"><i class="fa-solid fa-link"></i> Survey URL</label>
+                    <input type="text" id="survey-url-input" placeholder="https://ee.kobotoolbox.org/x/..." value="https://ee.kobotoolbox.org/x/lJHKBgCj">
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="fetch-schema-btn">
+                        <i class="fa-solid fa-sync"></i> Fetch Schema
+                    </button>
+                </div>
+            </header>
+
+            <!-- TAB: Dashboard -->
+            <section class="tab-content active" id="dashboard-tab">
+                <div class="welcome-banner">
+                    <h1>Automate Your Survey Submissions</h1>
+                    <p>Easily generate 95 highly specific, statistical-compliant synthetic records matching your final year project guidelines, review them, and submit via Playwright browser automation.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fa-solid fa-database"></i></div>
+                        <div class="stat-details">
+                            <h3>Total Records</h3>
+                            <h2 id="stat-total-records">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="stat-details">
+                            <h3>Submitted</h3>
+                            <h2 id="stat-submitted-records">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fa-solid fa-clock"></i></div>
+                        <div class="stat-details">
+                            <h3>Pending / Ready</h3>
+                            <h2 id="stat-ready-records">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="stat-details">
+                            <h3>Failed</h3>
+                            <h2 id="stat-failed-records">0</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-details">
+                    <div class="card card-wide">
+                        <h2>Application Guide & Workflow</h2>
+                        <div class="workflow-steps">
+                            <div class="step">
+                                <div class="step-num">1</div>
+                                <h4>Configure survey</h4>
+                                <p>Fetch the questions schema dynamically from your Enketo webform link.</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-num">2</div>
+                                <h4>Generate Data</h4>
+                                <p>Produce 95 synthetic answers conforming to the 79 statistical distribution rules.</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-num">3</div>
+                                <h4>Verify First 5</h4>
+                                <p>Submit the first 5 records in "Headed" browser mode to watch them run and verify correctness.</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-num">4</div>
+                                <h4>Submit All</h4>
+                                <p>Once verified, launch the batch execution to finish all remaining submissions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: Survey Configuration -->
+            <section class="tab-content" id="config-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Question-to-Rule Mapping Configuration</h2>
+                        <p>Map the HTML input names detected in the Enketo form to the 79 data generation rule keys.</p>
+                    </div>
+                    
+                    <div class="mapping-container">
+                        <div class="loading-spinner" id="schema-loading" style="display: none;">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Fetching questions, please wait...
+                        </div>
+                        <div class="schema-empty-state" id="schema-empty">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <p>No survey schema loaded. Please enter your survey link above and click "Fetch Schema" to load questions.</p>
+                        </div>
+                        
+                        <div class="schema-table-wrapper" id="schema-table-wrapper" style="display: none;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Question Label (Form DOM Text)</th>
+                                        <th>Input Type</th>
+                                        <th>Target Input Name</th>
+                                        <th>Generated Rule Variable Mapping</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mapping-tbody">
+                                    <!-- Dynamic rows from app.js -->
+                                </tbody>
+                            </table>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" id="save-mapping-btn">
+                                    <i class="fa-solid fa-save"></i> Save Mapping Configuration
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: Submissions Queue / Data Generator -->
+            <section class="tab-content" id="generator-tab">
+                <div class="card">
+                    <div class="card-header flex-header">
+                        <div>
+                            <h2>Survey Submissions Queue</h2>
+                            <p>Generate, view, edit and submit responses individually or in batches.</p>
+                        </div>
+                        <div class="queue-controls">
+                            <div class="input-group">
+                                <label for="generate-count-input">Count:</label>
+                                <input type="number" id="generate-count-input" value="95" min="1" max="1000">
+                            </div>
+                            <button class="btn btn-primary" id="generate-data-btn">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Dataset
+                            </button>
+                            <button class="btn btn-secondary" id="clear-queue-btn">
+                                <i class="fa-solid fa-trash-can"></i> Clear Queue
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="automation-run-panel">
+                        <h3>Automation Actions</h3>
+                        <div class="button-bar">
+                            <button class="btn btn-warning" id="submit-first5-btn" disabled>
+                                <i class="fa-solid fa-bug"></i> Test Submit First 5 (Headed)
+                            </button>
+                            <button class="btn btn-success" id="submit-all-btn" disabled>
+                                <i class="fa-solid fa-play"></i> Run All Remaining Submissions
+                            </button>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="headed-mode-checkbox" checked>
+                                Headed Mode (Watch Browser Filling Form)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="queue-table-wrapper">
+                        <table class="data-table" id="queue-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name (Q1)</th>
+                                    <th>Phone (Q2)</th>
+                                    <th>Age (Q4)</th>
+                                    <th>Exp (Q17)</th>
+                                    <th>Income (Q52)</th>
+                                    <th>Location (Q9)</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="queue-tbody">
+                                <tr>
+                                    <td colspan="9" class="text-center">No records generated. Click "Generate Dataset" to start.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: Live Logs -->
+            <section class="tab-content" id="logs-tab">
+                <div class="card console-card">
+                    <div class="card-header flex-header">
+                        <div>
+                            <h2>Automation Engine Logs</h2>
+                            <p>Real-time updates from the background Playwright browser automation process.</p>
+                        </div>
+                        <button class="btn btn-secondary" id="clear-logs-btn">
+                            <i class="fa-solid fa-eraser"></i> Clear Terminal Screen
+                        </button>
+                    </div>
+                    <div class="console-wrapper">
+                        <pre class="console-output" id="console-output">No logs yet. Trigger automation to see logs here.</pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Record Modal -->
+    <div class="modal" id="edit-record-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Submission Responses (Record #<span id="modal-record-id"></span>)</h3>
+                <span class="close-modal-btn" id="close-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body-fields">
+                <!-- Form fields will be loaded dynamically by app.js -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-edit-btn">Cancel</button>
+                <button class="btn btn-primary" id="save-edit-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
