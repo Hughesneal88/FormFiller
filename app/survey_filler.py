@@ -14,21 +14,7 @@ LogFn = Callable[[str, str], Any]
 # JavaScript helpers run inside the Enketo page for reliable interaction.
 _FILL_QUESTION_JS = """
 ({ questionNum, qType, value, rankItem }) => {
-  const expandParents = (el) => {
-    let p = el;
-    while (p) {
-      if (p.style) {
-        p.style.removeProperty('display');
-        p.style.removeProperty('height');
-        p.style.removeProperty('max-height');
-        p.style.removeProperty('overflow');
-      }
-      if (p.classList) {
-        p.classList.remove('or-appearance-minimal', 'or-previous', 'or-hidden', 'disabled');
-      }
-      p = p.parentElement;
-    }
-  };
+  const normalize = (s) => String(s || '').replace(/\\s+/g, ' ').trim().toLowerCase();
 
   const findQuestion = () => {
     const questions = Array.from(document.querySelectorAll('.question'));
@@ -44,7 +30,6 @@ _FILL_QUESTION_JS = """
 
   const q = findQuestion();
   if (!q) return { ok: false, reason: 'not_found' };
-  expandParents(q);
   q.scrollIntoView({ block: 'center', behavior: 'instant' });
 
   const fire = (el) => {
@@ -53,18 +38,37 @@ _FILL_QUESTION_JS = """
     el.dispatchEvent(new Event('blur', { bubbles: true }));
   };
 
-  const clickLabel = (choice) => {
-    const want = String(choice).trim().toLowerCase();
+  const findChoice = (choice) => {
+    const want = normalize(choice);
     const labels = Array.from(q.querySelectorAll('label'));
-    let lbl = labels.find((l) => l.innerText.trim().toLowerCase() === want);
-    if (!lbl) lbl = labels.find((l) => l.innerText.trim().toLowerCase().startsWith(want));
-    if (lbl) { lbl.click(); return true; }
+    let lbl = labels.find((l) => normalize(l.innerText) === want);
+    if (!lbl) lbl = labels.find((l) => normalize(l.innerText).startsWith(want));
+    if (!lbl) lbl = labels.find((l) => normalize(l.innerText).includes(want));
+    if (lbl) {
+      const forId = lbl.getAttribute('for');
+      const input = forId ? document.getElementById(forId) : lbl.querySelector('input');
+      return { lbl, input };
+    }
     const inputs = Array.from(q.querySelectorAll('input[type="checkbox"], input[type="radio"]'));
     for (const inp of inputs) {
       const l = inp.id && document.querySelector('label[for="' + inp.id + '"]');
-      if (l && l.innerText.trim().toLowerCase().includes(want)) { l.click(); return true; }
+      if (l && normalize(l.innerText).includes(want)) return { lbl: l, input: inp };
     }
-    return false;
+    return null;
+  };
+
+  const ensureChoice = (choice) => {
+    const found = findChoice(choice);
+    if (!found) return false;
+    const { lbl, input } = found;
+    if (input && input.checked) return true;
+    if (lbl) lbl.click();
+    else if (input) input.click();
+    if (input && !input.checked) {
+      if (lbl) lbl.click();
+      else input.click();
+    }
+    return input ? input.checked : true;
   };
 
   if (qType === 'text') {
@@ -89,14 +93,16 @@ _FILL_QUESTION_JS = """
   }
 
   if (qType === 'select_one') {
-    return clickLabel(value) ? { ok: true } : { ok: false, reason: 'no_choice' };
+    return ensureChoice(value) ? { ok: true } : { ok: false, reason: 'no_choice' };
   }
 
   if (qType === 'select_multiple') {
     const choices = Array.isArray(value) ? value : [value];
     let n = 0;
-    for (const c of choices) if (clickLabel(c)) n++;
-    return n > 0 ? { ok: true, count: n } : { ok: false, reason: 'no_choice' };
+    for (const c of choices) if (ensureChoice(c)) n++;
+    return (choices.length > 0 && n === choices.length)
+      ? { ok: true, count: n }
+      : { ok: false, reason: 'no_choice', count: n };
   }
 
   return { ok: false, reason: 'unknown_type' };
@@ -180,18 +186,13 @@ class SurveyFiller:
         return [self.engine.generate(i) for i in range(count)]
 
     def _should_answer(self, question: dict[str, Any], answers: dict[str, Any]) -> bool:
-        # Only allow skipping q2 (phone number) - all other questions must be answered
-        if question["id"] == "q2":
-            cond = question.get("conditional")
-            if not cond:
-                return True
-            parent_val = answers.get(cond["question"])
-            if isinstance(parent_val, list):
-                return cond["value"] in parent_val
-            return parent_val == cond["value"]
-        
-        # For all other questions, always return True to force filling
-        return True
+        cond = question.get("conditional")
+        if not cond:
+            return True
+        parent_val = answers.get(cond["question"])
+        if isinstance(parent_val, list):
+            return cond["value"] in parent_val
+        return parent_val == cond["value"]
 
     def _build_responses(self, respondent_index: int) -> dict[str, Any]:
         return self.engine.generate(respondent_index)
@@ -207,24 +208,6 @@ class SurveyFiller:
         await page.goto(self.SURVEY_URL, wait_until="domcontentloaded")
         await page.wait_for_selector("form.or", timeout=60000)
         await page.wait_for_selector(".question", timeout=60000)
-        
-        # Force form visibility by removing hidden/display properties
-        await page.evaluate("""
-            () => {
-                const form = document.querySelector('form.or');
-                if (form) {
-                    form.style.removeProperty('display');
-                    form.style.removeProperty('visibility');
-                    form.classList.remove('or-hidden', 'hidden');
-                }
-                document.querySelectorAll('.or-group, fieldset, .or-appearance-fieldset, .question').forEach(el => {
-                    el.style.removeProperty('display');
-                    el.style.removeProperty('visibility');
-                    el.classList.remove('or-hidden', 'hidden', 'or-appearance-minimal');
-                });
-            }
-        """)
-        
         page.set_default_timeout(self.FIELD_TIMEOUT_MS)
         await asyncio.sleep(2.0)
 
@@ -239,39 +222,13 @@ class SurveyFiller:
             "D": "SECTION D",
         }
         prefix = prefixes.get(sid, section["title"][:20])
-        
-        # Force all sections to be visible regardless of navigation
-        await page.evaluate("""
-            () => {
-                document.querySelectorAll('.or-group, fieldset, .or-appearance-fieldset, .question, .or-section').forEach(el => {
-                    el.style.removeProperty('display');
-                    el.style.removeProperty('height');
-                    el.style.removeProperty('visibility');
-                    el.style.removeProperty('max-height');
-                    el.style.removeProperty('overflow');
-                    el.classList.remove('or-appearance-minimal', 'or-hidden', 'hidden', 'or-previous', 'disabled');
-                });
-            }
-        """)
-        
         try:
             btn = page.get_by_role("button", name=re.compile(re.escape(prefix[:12]), re.I))
             if await btn.count() > 0:
                 await btn.first.click(timeout=5000)
             else:
                 await page.evaluate(_GOTO_SECTION_JS, prefix)
-            await asyncio.sleep(1.0)
-            await page.evaluate("""
-                () => {
-                    document.querySelectorAll('.or-group, fieldset, .or-appearance-fieldset, .question').forEach(el => {
-                        el.style.removeProperty('display');
-                        el.style.removeProperty('height');
-                        el.style.removeProperty('visibility');
-                        el.classList.remove('or-appearance-minimal', 'or-hidden', 'hidden');
-                    });
-                }
-            """)
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(0.8)
         except Exception:
             pass
 
@@ -352,18 +309,6 @@ class SurveyFiller:
         delays = [0.2, 0.5, 1.0, 1.5, 2.0]
         
         for attempt in range(max_retries):
-            # Force visibility before each attempt
-            await page.evaluate("""
-                () => {
-                    document.querySelectorAll('.question, .or-group, fieldset').forEach(el => {
-                        el.style.removeProperty('display');
-                        el.style.removeProperty('visibility');
-                        el.classList.remove('or-hidden', 'hidden', 'or-appearance-minimal');
-                    });
-                }
-            """)
-            await asyncio.sleep(0.1)
-            
             if await self._fill_via_js(page, question, value):
                 return True
             
@@ -406,8 +351,9 @@ class SurveyFiller:
         submit: bool = True,
         delay_ms: int = 500,
         batch_id: str | None = None,
+        answers: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
-        answers = self._build_responses(respondent_index)
+        answers = answers or self._build_responses(respondent_index)
         respondent_num = respondent_index + 1
         name = answers.get("_meta", {}).get("name", f"Respondent {respondent_num}")
         self.log(f"#{respondent_num} {name}: loading survey…", "info")
@@ -432,9 +378,9 @@ class SurveyFiller:
                     continue
                 value = answers.get(question["id"])
                 if value is None:
-                    # Don't skip - try to fill with empty/default value
-                    self.log(f"Q{question['number']}: no value generated, attempting fill anyway", "warn")
-                    value = "" if question["type"] in ["text", "integer", "decimal"] else "Yes"
+                    skipped += 1
+                    self.log(f"Q{question['number']}: skipped (no value generated)", "warn")
+                    continue
 
                 try:
                     ok = await self._fill_question(page, question, value)
@@ -518,60 +464,71 @@ class SurveyFiller:
         if not headless:
             self.log("Keep the browser window open until each respondent finishes.", "info")
 
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(
-                headless=headless,
-                args=["--disable-blink-features=AutomationControlled"],
-            )
-            context = await browser.new_context(
-                viewport={"width": 1280, "height": 900},
-                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            )
+        try:
+            async with async_playwright() as p:
+                browser = await p.chromium.launch(
+                    headless=headless,
+                    args=["--disable-blink-features=AutomationControlled"],
+                )
+                context = await browser.new_context(
+                    viewport={"width": 1280, "height": 900},
+                    user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                )
 
-            for i in range(count):
-                if self._stop_requested:
-                    self.log("Stopped by user", "warn")
-                    break
+                for i in range(count):
+                    if self._stop_requested:
+                        self.log("Stopped by user", "warn")
+                        break
 
-                page = await context.new_page()
-                try:
-                    result = await self.fill_one(
-                        page, i, submit=submit, delay_ms=delay_ms, batch_id=batch_id
-                    )
-                    results.append(result)
-                except Exception as e:
-                    msg = str(e)
-                    if "closed" in msg.lower():
-                        self.log(
-                            f"Respondent {i + 1} failed: browser was closed. "
-                            "Do not close the browser window during Quick Test.",
-                            "error",
-                        )
-                    else:
-                        self.log(f"Respondent {i + 1} failed: {e}", "error")
-                    err_result = {
-                        "respondent": i + 1,
-                        "status": "error",
-                        "error": msg,
-                        "batch_id": batch_id,
-                    }
-                    results.append(err_result)
-                    if batch_id:
-                        save_submission(
-                            batch_id, i + 1, answers={}, status="error",
-                            fields_filled=0, error=msg,
-                        )
-                finally:
+                    answers = self._build_responses(i)
+                    page = await context.new_page()
                     try:
-                        await page.close()
-                    except Exception:
-                        pass
+                        result = await self.fill_one(
+                            page,
+                            i,
+                            submit=submit,
+                            delay_ms=delay_ms,
+                            batch_id=batch_id,
+                            answers=answers,
+                        )
+                        results.append(result)
+                    except Exception as e:
+                        msg = str(e)
+                        if "closed" in msg.lower():
+                            self.log(
+                                f"Respondent {i + 1} failed: browser was closed. "
+                                "Do not close the browser window during Quick Test.",
+                                "error",
+                            )
+                        else:
+                            self.log(f"Respondent {i + 1} failed: {e}", "error")
+                        err_result = {
+                            "respondent": i + 1,
+                            "status": "error",
+                            "error": msg,
+                            "batch_id": batch_id,
+                        }
+                        results.append(err_result)
+                        if batch_id:
+                            save_submission(
+                                batch_id,
+                                i + 1,
+                                answers=answers,
+                                status="error",
+                                fields_filled=0,
+                                error=msg,
+                            )
+                    finally:
+                        try:
+                            await page.close()
+                        except Exception:
+                            pass
 
-                if i < count - 1 and between_submissions_ms > 0:
-                    await asyncio.sleep(between_submissions_ms / 1000)
+                    if i < count - 1 and between_submissions_ms > 0:
+                        await asyncio.sleep(between_submissions_ms / 1000)
 
-            await browser.close()
-
-        finish_batch(batch_id, results)
+                await browser.close()
+        finally:
+            finish_batch(batch_id, results)
         self.log(f"Batch {batch_id} complete — review in Submissions tab", "success")
         return results
