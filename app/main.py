@@ -25,24 +25,38 @@ ws_clients: list[WebSocket] = []
 run_task: asyncio.Task | None = None
 
 
+def _consume_task_exception(task: asyncio.Task) -> None:
+    try:
+        task.exception()
+    except asyncio.CancelledError:
+        pass
+    except Exception:
+        pass
+
+
 async def broadcast(message: dict[str, Any]) -> None:
     dead: list[WebSocket] = []
-    for ws in ws_clients:
+    for ws in ws_clients[:]:
         try:
             await ws.send_json(message)
         except Exception:
             dead.append(ws)
     for ws in dead:
-        ws_clients.remove(ws)
+        if ws in ws_clients:
+            ws_clients.remove(ws)
 
 
 def make_log_fn():
     loop = asyncio.get_running_loop()
 
     def log(msg: str, level: str = "info"):
-        loop.call_soon_threadsafe(
-            lambda: asyncio.create_task(broadcast({"type": "log", "level": level, "message": msg}))
-        )
+        def _schedule_log() -> None:
+            task = asyncio.create_task(
+                broadcast({"type": "log", "level": level, "message": msg})
+            )
+            task.add_done_callback(_consume_task_exception)
+
+        loop.call_soon_threadsafe(_schedule_log)
 
     return log
 
@@ -187,6 +201,7 @@ async def start_run(config: RunConfig):
             await broadcast({"type": "status", "running": False})
 
     run_task = asyncio.create_task(_run())
+    run_task.add_done_callback(_consume_task_exception)
     return {"ok": True, "message": f"Started batch of {config.count} submission(s)"}
 
 
