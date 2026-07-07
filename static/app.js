@@ -327,10 +327,14 @@ async function startRun(overrides = {}) {
     submit: overrides.submit ?? $("#inputSubmit").checked,
     delay_ms: parseInt($("#inputDelay").value, 10) || 200,
     between_ms: parseInt($("#inputBetween").value, 10) || 2000,
+    threads: parseInt($("#inputThreads").value, 10) || 3,
   };
 
   setSubmissionCount(count);
-  addLog(`Starting batch: ${config.count} submission(s), submit=${config.submit}`, "info");
+  addLog(
+    `Starting batch: ${config.count} submission(s), submit=${config.submit}, threads=${config.threads}`,
+    "info"
+  );
   setRunning(true);
 
   const res = await fetch("/api/run", {

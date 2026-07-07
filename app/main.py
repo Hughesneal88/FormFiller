@@ -67,6 +67,7 @@ class RunConfig(BaseModel):
     submit: bool = False
     delay_ms: int = Field(default=80, ge=0, le=5000)
     between_ms: int = Field(default=2000, ge=0, le=30000)
+    threads: int = Field(default=3, ge=1, le=10)
 
 
 class PreviewConfig(BaseModel):
@@ -193,6 +194,7 @@ async def start_run(config: RunConfig):
                 submit=config.submit,
                 delay_ms=config.delay_ms,
                 between_submissions_ms=config.between_ms,
+                workers=config.threads,
             )
             await broadcast({"type": "complete", "results": results})
         except Exception as e:
