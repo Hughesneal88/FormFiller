@@ -78,6 +78,20 @@ class GuidelinesUpdate(BaseModel):
     answers: dict[str, Any] = {}
 
 
+def _run_batch_with_own_loop(filler: SurveyFiller, config: RunConfig) -> list[dict[str, Any]]:
+    if sys.platform.startswith("win"):
+        asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+    return asyncio.run(
+        filler.run_batch(
+            config.count,
+            headless=config.headless,
+            submit=config.submit,
+            delay_ms=config.delay_ms,
+            between_submissions_ms=config.between_ms,
+        )
+    )
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     yield
@@ -187,13 +201,7 @@ async def start_run(config: RunConfig):
     async def _run():
         await broadcast({"type": "status", "running": True})
         try:
-            results = await filler.run_batch(
-                config.count,
-                headless=config.headless,
-                submit=config.submit,
-                delay_ms=config.delay_ms,
-                between_submissions_ms=config.between_ms,
-            )
+            results = await asyncio.to_thread(_run_batch_with_own_loop, filler, config)
             await broadcast({"type": "complete", "results": results})
         except Exception as e:
             await broadcast({"type": "error", "message": str(e)})
@@ -240,8 +248,16 @@ def _run_server_from_cli() -> None:
     parser.add_argument("--reload", action="store_true")
     args = parser.parse_args()
 
-    if sys.platform.startswith("win"):
+    is_windows = sys.platform.startswith("win")
+    if is_windows:
         asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+        if args.reload:
+            print(
+                "Reload mode disabled on Windows: it switches to a Selector event loop "
+                "that breaks Playwright subprocess startup.",
+                file=sys.stderr,
+            )
+            args.reload = False
 
     uvicorn.run("app.main:app", host=args.host, port=args.port, reload=args.reload)
 
