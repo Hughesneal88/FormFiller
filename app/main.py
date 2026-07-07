@@ -1,5 +1,6 @@
 import asyncio
 import json
+import sys
 from contextlib import asynccontextmanager
 from typing import Any
 
@@ -15,6 +16,9 @@ from app.submissions import SUBMISSIONS_DIR, get_batch, get_submission, list_bat
 from app.survey_filler import SurveyFiller
 
 static_path = Path(__file__).resolve().parent.parent / "static"
+
+if sys.platform.startswith("win"):
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
 active_filler: SurveyFiller | None = None
 ws_clients: list[WebSocket] = []
