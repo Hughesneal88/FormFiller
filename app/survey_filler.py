@@ -38,6 +38,54 @@ _FILL_QUESTION_JS = """
     el.dispatchEvent(new Event('blur', { bubbles: true }));
   };
 
+  const fillTextLike = (raw) => {
+    const field = q.querySelector('textarea')
+      || q.querySelector('input[type="text"]')
+      || q.querySelector('input[type="search"]')
+      || q.querySelector('input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"])');
+    if (!field) return false;
+    const value = Array.isArray(raw) ? raw.join(', ') : raw;
+    field.focus();
+    field.click();
+    field.value = String(value ?? '');
+    fire(field);
+    return true;
+  };
+
+  const setSelectValue = (raw, multiple = false) => {
+    const sel = q.querySelector('select');
+    if (!sel) return false;
+    const wanted = (Array.isArray(raw) ? raw : [raw]).map(normalize);
+    if (!wanted.length) return false;
+    const options = Array.from(sel.options || []);
+    const findOption = (want) =>
+      options.find((o) => normalize(o.textContent) === want)
+      || options.find((o) => normalize(o.label) === want)
+      || options.find((o) => normalize(o.textContent).includes(want));
+
+    if (multiple || sel.multiple) {
+      let matched = 0;
+      options.forEach((o) => { o.selected = false; });
+      for (const want of wanted) {
+        const opt = findOption(want);
+        if (opt) {
+          opt.selected = true;
+          matched += 1;
+        }
+      }
+      if (matched === 0) return false;
+      fire(sel);
+      return matched === wanted.length;
+    }
+
+    const opt = findOption(wanted[0]);
+    if (!opt) return false;
+    sel.value = opt.value;
+    opt.selected = true;
+    fire(sel);
+    return true;
+  };
+
   const findChoice = (choice) => {
     const want = normalize(choice);
     const labels = Array.from(q.querySelectorAll('label'));
@@ -72,14 +120,7 @@ _FILL_QUESTION_JS = """
   };
 
   if (qType === 'text') {
-    const field = q.querySelector('textarea') || q.querySelector('input[type="text"]')
-      || q.querySelector('input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"])');
-    if (!field) return { ok: false, reason: 'no_input' };
-    field.focus();
-    field.click();
-    field.value = String(value);
-    fire(field);
-    return { ok: true };
+    return fillTextLike(value) ? { ok: true } : { ok: false, reason: 'no_input' };
   }
 
   if (qType === 'integer' || qType === 'decimal') {
@@ -93,16 +134,21 @@ _FILL_QUESTION_JS = """
   }
 
   if (qType === 'select_one') {
-    return ensureChoice(value) ? { ok: true } : { ok: false, reason: 'no_choice' };
+    if (ensureChoice(value)) return { ok: true };
+    if (setSelectValue(value, false)) return { ok: true };
+    if (fillTextLike(value)) return { ok: true };
+    return { ok: false, reason: 'no_choice' };
   }
 
   if (qType === 'select_multiple') {
     const choices = Array.isArray(value) ? value : [value];
-    let n = 0;
-    for (const c of choices) if (ensureChoice(c)) n++;
-    return (choices.length > 0 && n === choices.length)
-      ? { ok: true, count: n }
-      : { ok: false, reason: 'no_choice', count: n };
+    if (!choices.length) return { ok: false, reason: 'no_choice', count: 0 };
+    let matched = 0;
+    for (const c of choices) if (ensureChoice(c)) matched++;
+    if (matched === choices.length) return { ok: true, count: matched };
+    if (setSelectValue(choices, true)) return { ok: true, count: choices.length };
+    if (fillTextLike(choices)) return { ok: true, count: choices.length };
+    return { ok: false, reason: 'no_choice', count: matched };
   }
 
   return { ok: false, reason: 'unknown_type' };
@@ -124,6 +170,31 @@ _CLICK_NEXT_JS = """
   const next = links.find((a) => /^next$/i.test((a.innerText || '').trim()));
   if (next) { next.click(); return true; }
   return false;
+}
+"""
+
+_HANDLE_DRAFT_PROMPT_JS = """
+({ mode }) => {
+  const norm = (s) => String(s || '').replace(/\\s+/g, ' ').trim().toLowerCase();
+  const isVisible = (el) => {
+    const r = el.getBoundingClientRect();
+    return r.width > 0 && r.height > 0;
+  };
+  const controls = Array.from(document.querySelectorAll('button, a, [role="button"], .btn'))
+    .filter(isVisible);
+  const choose = (terms) => controls.find((el) => {
+    const t = norm(el.innerText || el.textContent);
+    return terms.some((x) => t.includes(x));
+  });
+
+  // Enketo draft prompt wording varies by version/theme.
+  const loadTerms = ['load', 'restore', 'continue'];
+  const discardTerms = ['discard', 'delete', 'start over', 'new form', 'clear'];
+
+  const target = mode === 'load' ? (choose(loadTerms) || choose(discardTerms)) : (choose(discardTerms) || choose(loadTerms));
+  if (!target) return { handled: false };
+  target.click();
+  return { handled: true, action: mode };
 }
 """
 
@@ -167,6 +238,84 @@ _GOTO_QUESTION_JS = """
 }
 """
 
+_LIST_UNANSWERED_REQUIRED_JS = """
+() => {
+  const norm = (s) => String(s || '').replace(/\\s+/g, ' ').trim();
+  const parseNum = (q) => {
+    const label = q.querySelector('.question-label');
+    const text = norm(label ? label.innerText : q.innerText);
+    const m = text.match(/^(\\d+)\\./);
+    return m ? Number(m[1]) : null;
+  };
+  const inferType = (q) => {
+    if (q.querySelector('input[type="radio"]')) return 'select_one';
+    if (q.querySelector('input[type="checkbox"]')) return 'select_multiple';
+    const sel = q.querySelector('select');
+    if (sel) return sel.multiple ? 'select_multiple' : 'select_one';
+    if (q.querySelector('input[type="number"]')) return 'integer';
+    return 'text';
+  };
+  const isAnswered = (q) => {
+    const radios = q.querySelectorAll('input[type="radio"]');
+    if (radios.length) return Array.from(radios).some((x) => x.checked);
+    const checks = q.querySelectorAll('input[type="checkbox"]');
+    if (checks.length) return Array.from(checks).some((x) => x.checked);
+    const sel = q.querySelector('select');
+    if (sel) {
+      if (sel.multiple) return Array.from(sel.selectedOptions || []).length > 0;
+      return norm(sel.value).length > 0;
+    }
+    const field = q.querySelector(
+      'textarea, input[type="text"], input[type="number"], input[type="search"], input:not([type])'
+    );
+    if (!field) return false;
+    return norm(field.value).length > 0;
+  };
+  const isRequired = (q) => {
+    if (q.querySelector('.required')) return true;
+    const field = q.querySelector('input, textarea, select');
+    if (!field) return false;
+    const req = field.getAttribute('data-required');
+    return req && req.toLowerCase().includes('true');
+  };
+  const isVisible = (q) => {
+    if (q.classList.contains('disabled') || q.classList.contains('or-branch') && q.classList.contains('disabled')) {
+      return false;
+    }
+    const r = q.getBoundingClientRect();
+    return r.width > 0 && r.height > 0;
+  };
+  const choices = (q) => {
+    const labels = Array.from(q.querySelectorAll('label'))
+      .map((l) => norm(l.innerText))
+      .filter(Boolean);
+    if (labels.length) return labels;
+    const sel = q.querySelector('select');
+    if (!sel) return [];
+    return Array.from(sel.options || [])
+      .map((o) => norm(o.textContent))
+      .filter(Boolean);
+  };
+
+  const out = [];
+  const seen = new Set();
+  for (const q of Array.from(document.querySelectorAll('.question'))) {
+    if (!isVisible(q) || !isRequired(q)) continue;
+    if (isAnswered(q)) continue;
+    const num = parseNum(q);
+    if (num == null || seen.has(num)) continue;
+    seen.add(num);
+    out.push({
+      number: num,
+      type: inferType(q),
+      choices: choices(q).slice(0, 20),
+    });
+  }
+  out.sort((a, b) => a.number - b.number);
+  return out;
+}
+"""
+
 
 class SurveyFiller:
     SURVEY_URL = "https://ee.kobotoolbox.org/x/lJHKBgCj"
@@ -203,12 +352,21 @@ class SurveyFiller:
             questions.extend(section["questions"])
         return questions
 
-    async def _wait_for_form(self, page: Page) -> None:
+    async def _wait_for_form(self, page: Page, *, submit: bool) -> None:
         page.set_default_timeout(60000)
         attempts = 3
         for attempt in range(1, attempts + 1):
             try:
                 await page.goto(self.SURVEY_URL, wait_until="domcontentloaded", timeout=90000)
+                # Handle draft restore prompt:
+                # - test runs: discard previous draft
+                # - submit runs: load previous draft and continue to completion
+                draft_mode = "load" if submit else "discard"
+                for _ in range(3):
+                    handled = await page.evaluate(_HANDLE_DRAFT_PROMPT_JS, {"mode": draft_mode})
+                    if not handled or not handled.get("handled"):
+                        break
+                    await asyncio.sleep(0.8)
                 await page.wait_for_selector("form.or", timeout=60000)
                 await page.wait_for_selector(".question", timeout=60000)
                 break
@@ -337,6 +495,34 @@ class SurveyFiller:
         self.log(f"Q{number}: failed after {max_retries} attempts", "warn")
         return False
 
+    async def _list_unanswered_required(self, page: Page) -> list[dict[str, Any]]:
+        try:
+            result = await page.evaluate(_LIST_UNANSWERED_REQUIRED_JS)
+            if isinstance(result, list):
+                return result
+            return []
+        except Exception:
+            return []
+
+    def _fallback_value_for_live_question(
+        self,
+        question: dict[str, Any],
+        answers: dict[str, Any],
+    ) -> Any:
+        qnum = question.get("number")
+        value = answers.get(f"q{qnum}") if qnum is not None else None
+        if value is not None:
+            return value
+        qtype = question.get("type")
+        options = [c for c in (question.get("choices") or []) if c and c != "Other (Specify)"]
+        if qtype == "select_multiple":
+            return options[:2] if options else ["Yes"]
+        if qtype == "select_one":
+            return options[0] if options else "Yes"
+        if qtype in ("integer", "decimal"):
+            return 1
+        return "N/A"
+
     async def _take_screenshot(self, page: Page, batch_id: str, respondent: int) -> str:
         batch_path = SUBMISSIONS_DIR / batch_id
         batch_path.mkdir(parents=True, exist_ok=True)
@@ -348,16 +534,20 @@ class SurveyFiller:
         return filename
 
     async def _submit_form(self, page: Page) -> bool:
-        submit_btn = page.locator(
-            "button#submit-form, .submit button, button.submit, button:has-text('Submit')"
-        )
-        if await submit_btn.count() == 0:
-            submit_btn = page.get_by_role("button", name=re.compile("submit", re.IGNORECASE))
-        if await submit_btn.count() > 0:
-            await submit_btn.first.scroll_into_view_if_needed()
-            await submit_btn.first.click(timeout=8000)
-            await asyncio.sleep(2)
-            return True
+        for _ in range(10):
+            submit_btn = page.locator(
+                "button#submit-form, .submit button, button.submit, button:has-text('Submit')"
+            )
+            if await submit_btn.count() == 0:
+                submit_btn = page.get_by_role("button", name=re.compile("submit", re.IGNORECASE))
+            if await submit_btn.count() > 0:
+                await submit_btn.first.scroll_into_view_if_needed()
+                await submit_btn.first.click(timeout=8000)
+                await asyncio.sleep(2)
+                return True
+            if not await page.evaluate(_CLICK_NEXT_JS):
+                break
+            await asyncio.sleep(0.5)
         return False
 
     async def fill_one(
@@ -375,7 +565,7 @@ class SurveyFiller:
         name = answers.get("_meta", {}).get("name", f"Respondent {respondent_num}")
         self.log(f"#{respondent_num} {name}: loading survey…", "info")
 
-        await self._wait_for_form(page)
+        await self._wait_for_form(page, submit=submit)
 
         filled = 0
         skipped = 0
@@ -420,6 +610,33 @@ class SurveyFiller:
                     await asyncio.sleep(0.15)
 
             await self._click_next(page)
+
+        # Safety pass: fill any visible required fields left unanswered on the live form.
+        for _ in range(2):
+            pending = await self._list_unanswered_required(page)
+            if not pending:
+                break
+            self.log(f"#{respondent_num}: backfilling {len(pending)} required unanswered question(s)", "warn")
+            progress = 0
+            for live_q in pending:
+                q_for_fill = {
+                    "number": live_q["number"],
+                    "type": live_q.get("type", "text"),
+                }
+                value = self._fallback_value_for_live_question(live_q, answers)
+                try:
+                    ok = await self._fill_question(page, q_for_fill, value)
+                    if ok:
+                        filled += 1
+                        progress += 1
+                    else:
+                        skipped += 1
+                except Exception as e:
+                    skipped += 1
+                    if "closed" in str(e).lower():
+                        raise
+            if progress == 0:
+                break
 
         screenshot_file = None
         if batch_id:
@@ -509,6 +726,12 @@ class SurveyFiller:
                             answers=answers,
                         )
                         results.append(result)
+                        if submit and result.get("status") != "submitted":
+                            self.log(
+                                f"Respondent {i + 1} was not submitted; stopping batch before next respondent.",
+                                "error",
+                            )
+                            break
                     except Exception as e:
                         msg = str(e)
                         if "closed" in msg.lower():
