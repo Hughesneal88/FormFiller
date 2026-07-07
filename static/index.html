@@ -1,268 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey Auto-Filler Dashboard</title>
-    <!-- Google Fonts Outfit & Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Survey Auto-Filler | Jamestown Fisher Survey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="logo-area">
-                <i class="fa-solid fa-wand-magic-sparkles logo-icon"></i>
-                <h2>SurveyFiller</h2>
-            </div>
-            <nav class="sidebar-nav">
-                <button class="nav-btn active" data-tab="dashboard-tab">
-                    <i class="fa-solid fa-chart-pie"></i> Dashboard
-                </button>
-                <button class="nav-btn" data-tab="config-tab">
-                    <i class="fa-solid fa-gears"></i> Survey Configuration
-                </button>
-                <button class="nav-btn" data-tab="generator-tab">
-                    <i class="fa-solid fa-list-check"></i> Submissions Queue
-                </button>
-                <button class="nav-btn" data-tab="logs-tab">
-                    <i class="fa-solid fa-terminal"></i> Live Logs
-                </button>
-            </nav>
-            <div class="connection-status" id="connection-status">
-                <span class="status-dot green"></span> Connected
-            </div>
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Header -->
-            <header class="app-header">
-                <div class="search-bar-container">
-                    <label for="survey-url-input"><i class="fa-solid fa-link"></i> Survey URL</label>
-                    <input type="text" id="survey-url-input" placeholder="https://ee.kobotoolbox.org/x/..." value="https://ee.kobotoolbox.org/x/lJHKBgCj">
-                </div>
-                <div class="header-actions">
-                    <button class="btn btn-secondary" id="fetch-schema-btn">
-                        <i class="fa-solid fa-sync"></i> Fetch Schema
-                    </button>
-                </div>
-            </header>
-
-            <!-- TAB: Dashboard -->
-            <section class="tab-content active" id="dashboard-tab">
-                <div class="welcome-banner">
-                    <h1>Automate Your Survey Submissions</h1>
-                    <p>Easily generate 95 highly specific, statistical-compliant synthetic records matching your final year project guidelines, review them, and submit via Playwright browser automation.</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon purple"><i class="fa-solid fa-database"></i></div>
-                        <div class="stat-details">
-                            <h3>Total Records</h3>
-                            <h2 id="stat-total-records">0</h2>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
-                        <div class="stat-details">
-                            <h3>Submitted</h3>
-                            <h2 id="stat-submitted-records">0</h2>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon blue"><i class="fa-solid fa-clock"></i></div>
-                        <div class="stat-details">
-                            <h3>Pending / Ready</h3>
-                            <h2 id="stat-ready-records">0</h2>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                        <div class="stat-details">
-                            <h3>Failed</h3>
-                            <h2 id="stat-failed-records">0</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dashboard-details">
-                    <div class="card card-wide">
-                        <h2>Application Guide & Workflow</h2>
-                        <div class="workflow-steps">
-                            <div class="step">
-                                <div class="step-num">1</div>
-                                <h4>Configure survey</h4>
-                                <p>Fetch the questions schema dynamically from your Enketo webform link.</p>
-                            </div>
-                            <div class="step">
-                                <div class="step-num">2</div>
-                                <h4>Generate Data</h4>
-                                <p>Produce 95 synthetic answers conforming to the 79 statistical distribution rules.</p>
-                            </div>
-                            <div class="step">
-                                <div class="step-num">3</div>
-                                <h4>Verify First 5</h4>
-                                <p>Submit the first 5 records in "Headed" browser mode to watch them run and verify correctness.</p>
-                            </div>
-                            <div class="step">
-                                <div class="step-num">4</div>
-                                <h4>Submit All</h4>
-                                <p>Once verified, launch the batch execution to finish all remaining submissions.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TAB: Survey Configuration -->
-            <section class="tab-content" id="config-tab">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Question-to-Rule Mapping Configuration</h2>
-                        <p>Map the HTML input names detected in the Enketo form to the 79 data generation rule keys.</p>
-                    </div>
-                    
-                    <div class="mapping-container">
-                        <div class="loading-spinner" id="schema-loading" style="display: none;">
-                            <i class="fa-solid fa-spinner fa-spin"></i> Fetching questions, please wait...
-                        </div>
-                        <div class="schema-empty-state" id="schema-empty">
-                            <i class="fa-solid fa-circle-info"></i>
-                            <p>No survey schema loaded. Please enter your survey link above and click "Fetch Schema" to load questions.</p>
-                        </div>
-                        
-                        <div class="schema-table-wrapper" id="schema-table-wrapper" style="display: none;">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Question Label (Form DOM Text)</th>
-                                        <th>Input Type</th>
-                                        <th>Target Input Name</th>
-                                        <th>Generated Rule Variable Mapping</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="mapping-tbody">
-                                    <!-- Dynamic rows from app.js -->
-                                </tbody>
-                            </table>
-                            <div class="card-actions">
-                                <button class="btn btn-primary" id="save-mapping-btn">
-                                    <i class="fa-solid fa-save"></i> Save Mapping Configuration
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TAB: Submissions Queue / Data Generator -->
-            <section class="tab-content" id="generator-tab">
-                <div class="card">
-                    <div class="card-header flex-header">
-                        <div>
-                            <h2>Survey Submissions Queue</h2>
-                            <p>Generate, view, edit and submit responses individually or in batches.</p>
-                        </div>
-                        <div class="queue-controls">
-                            <div class="input-group">
-                                <label for="generate-count-input">Count:</label>
-                                <input type="number" id="generate-count-input" value="95" min="1" max="1000">
-                            </div>
-                            <button class="btn btn-primary" id="generate-data-btn">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Dataset
-                            </button>
-                            <button class="btn btn-secondary" id="clear-queue-btn">
-                                <i class="fa-solid fa-trash-can"></i> Clear Queue
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="automation-run-panel">
-                        <h3>Automation Actions</h3>
-                        <div class="button-bar">
-                            <button class="btn btn-warning" id="submit-first5-btn" disabled>
-                                <i class="fa-solid fa-bug"></i> Test Submit First 5 (Headed)
-                            </button>
-                            <button class="btn btn-success" id="submit-all-btn" disabled>
-                                <i class="fa-solid fa-play"></i> Run All Remaining Submissions
-                            </button>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="headed-mode-checkbox" checked>
-                                Headed Mode (Watch Browser Filling Form)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="queue-table-wrapper">
-                        <table class="data-table" id="queue-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name (Q1)</th>
-                                    <th>Phone (Q2)</th>
-                                    <th>Age (Q4)</th>
-                                    <th>Exp (Q17)</th>
-                                    <th>Income (Q52)</th>
-                                    <th>Location (Q9)</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="queue-tbody">
-                                <tr>
-                                    <td colspan="9" class="text-center">No records generated. Click "Generate Dataset" to start.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TAB: Live Logs -->
-            <section class="tab-content" id="logs-tab">
-                <div class="card console-card">
-                    <div class="card-header flex-header">
-                        <div>
-                            <h2>Automation Engine Logs</h2>
-                            <p>Real-time updates from the background Playwright browser automation process.</p>
-                        </div>
-                        <button class="btn btn-secondary" id="clear-logs-btn">
-                            <i class="fa-solid fa-eraser"></i> Clear Terminal Screen
-                        </button>
-                    </div>
-                    <div class="console-wrapper">
-                        <pre class="console-output" id="console-output">No logs yet. Trigger automation to see logs here.</pre>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- Edit Record Modal -->
-    <div class="modal" id="edit-record-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Edit Submission Responses (Record #<span id="modal-record-id"></span>)</h3>
-                <span class="close-modal-btn" id="close-modal">&times;</span>
-            </div>
-            <div class="modal-body" id="modal-body-fields">
-                <!-- Form fields will be loaded dynamically by app.js -->
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancel-edit-btn">Cancel</button>
-                <button class="btn btn-primary" id="save-edit-btn">Save Changes</button>
-            </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+            <rect x="9" y="3" width="6" height="4" rx="1"/>
+            <path d="M9 12h6M9 16h4"/>
+          </svg>
         </div>
-    </div>
-    
-    <script src="app.js"></script>
+        <div>
+          <h1>Survey Auto-Filler</h1>
+          <p>Final Year Project</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <span class="nav-icon">◉</span> Dashboard
+        </button>
+        <button class="nav-item" data-tab="questions">
+          <span class="nav-icon">☰</span> Questions
+        </button>
+        <button class="nav-item" data-tab="submissions">
+          <span class="nav-icon">⊞</span> Submissions
+        </button>
+        <button class="nav-item" data-tab="guidelines">
+          <span class="nav-icon">✎</span> Guidelines
+        </button>
+        <button class="nav-item" data-tab="logs">
+          <span class="nav-icon">▤</span> Activity Log
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-pill" id="connectionStatus">
+          <span class="dot"></span> Connecting…
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <!-- Dashboard -->
+      <section class="panel active" id="panel-dashboard">
+        <header class="panel-header">
+          <div>
+            <h2>Dashboard</h2>
+            <p class="subtitle" id="surveyTitle">Loading survey…</p>
+          </div>
+          <a href="https://ee.kobotoolbox.org/x/lJHKBgCj" target="_blank" rel="noopener" class="link-btn">
+            Open Survey ↗
+          </a>
+        </header>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-label">Total Questions</span>
+            <span class="stat-value" id="statQuestions">—</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Sections</span>
+            <span class="stat-value">5</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Strategy</span>
+            <span class="stat-value" id="statStrategy">—</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Submissions</span>
+            <span class="stat-value" id="statSubmissions">0</span>
+          </div>
+          <div class="stat-card accent">
+            <span class="stat-label">Run Status</span>
+            <span class="stat-value" id="statStatus">Idle</span>
+          </div>
+        </div>
+
+        <div class="card control-card">
+          <h3>Run Configuration</h3>
+          <div class="form-grid">
+            <label class="field">
+              <span>Number of submissions</span>
+              <input type="number" id="inputCount" value="5" min="1" max="100" />
+            </label>
+            <div class="field preset-field">
+              <span>Quick presets</span>
+              <div class="preset-row" id="presetRow">
+                <button type="button" class="preset-btn" data-count="5">5</button>
+                <button type="button" class="preset-btn" data-count="10">10</button>
+                <button type="button" class="preset-btn" data-count="25">25</button>
+                <button type="button" class="preset-btn" data-count="50">50</button>
+                <button type="button" class="preset-btn" data-count="95">95</button>
+              </div>
+            </div>
+            <label class="field">
+              <span>Delay between fields (ms)</span>
+              <input type="number" id="inputDelay" value="80" min="0" max="5000" step="50" />
+            </label>
+            <label class="field">
+              <span>Delay between submissions (ms)</span>
+              <input type="number" id="inputBetween" value="2000" min="0" max="30000" step="500" />
+            </label>
+            <label class="field checkbox-field">
+              <input type="checkbox" id="inputHeadless" checked />
+              <span>Headless browser (hide window)</span>
+            </label>
+            <label class="field checkbox-field">
+              <input type="checkbox" id="inputSubmit" />
+              <span>Submit after filling (⚠ use carefully)</span>
+            </label>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-secondary" id="btnPreview">
+              Preview Answers
+            </button>
+            <button class="btn btn-secondary" id="btnQuickTest">
+              Quick Test
+            </button>
+            <button class="btn btn-primary" id="btnStart">
+              <span class="btn-icon">▶</span> Start Filling (<span id="startCountLabel">5</span>)
+            </button>
+            <button class="btn btn-danger" id="btnStop" disabled>
+              <span class="btn-icon">■</span> Stop
+            </button>
+          </div>
+
+          <p class="hint">
+            <strong>Recommended workflow:</strong> Set how many submissions you want above (or use a preset),
+            click <em>Preview Answers</em> to review generated profiles, then <em>Quick Test</em> to watch the
+            browser fill forms. When satisfied, enable <em>Submit after filling</em> and click <em>Start Filling</em>.
+          </p>
+        </div>
+
+        <div class="sections-overview" id="sectionsOverview"></div>
+      </section>
+
+      <!-- Questions -->
+      <section class="panel" id="panel-questions">
+        <header class="panel-header">
+          <div>
+            <h2>Survey Questions</h2>
+            <p class="subtitle">All mapped questions from the KoboToolbox form</p>
+          </div>
+          <input type="search" class="search-input" id="questionSearch" placeholder="Search questions…" />
+        </header>
+        <div class="questions-list" id="questionsList"></div>
+      </section>
+
+      <!-- Submissions -->
+      <section class="panel" id="panel-submissions">
+        <header class="panel-header">
+          <div>
+            <h2>Submissions Review</h2>
+            <p class="subtitle">Inspect generated answers and screenshots before &amp; after submitting</p>
+          </div>
+          <button class="btn btn-secondary" id="btnRefreshSubmissions">Refresh</button>
+        </header>
+
+        <div class="submissions-layout">
+          <div class="card batch-list-card">
+            <h3>Batches</h3>
+            <div id="batchList" class="batch-list">
+              <p class="muted-text">No submissions yet. Run a test batch first.</p>
+            </div>
+          </div>
+
+          <div class="card submission-detail-card">
+            <h3 id="detailTitle">Select a submission</h3>
+            <div id="submissionDetail" class="submission-detail">
+              <p class="muted-text">Choose a batch and respondent to review all answers.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card preview-card">
+          <h3>Instant Preview (no browser)</h3>
+          <p class="hint">Generate sample answers instantly to verify guidelines before running the browser.</p>
+          <div id="previewResults" class="preview-results"></div>
+        </div>
+      </section>
+
+      <!-- Guidelines -->
+      <section class="panel" id="panel-guidelines">
+        <header class="panel-header">
+          <div>
+            <h2>Answer Guidelines</h2>
+            <p class="subtitle">Configure how each question should be answered</p>
+          </div>
+          <button class="btn btn-secondary" id="btnSaveGuidelines">Save Guidelines</button>
+        </header>
+
+        <div class="card">
+          <label class="field">
+            <span>Answer strategy</span>
+            <select id="inputStrategy">
+              <option value="random">Random — pick valid options automatically</option>
+              <option value="fixed">Fixed — use exact values from JSON below</option>
+            </select>
+          </label>
+          <p class="hint">
+            When you provide guidelines, switch to <strong>Fixed</strong> and edit the JSON.
+            Keys use question IDs (q1, q2, …). Share your guidelines and we'll populate this for you.
+          </p>
+          <textarea class="code-editor" id="guidelinesEditor" spellcheck="false" rows="20"></textarea>
+        </div>
+      </section>
+
+      <!-- Logs -->
+      <section class="panel" id="panel-logs">
+        <header class="panel-header">
+          <div>
+            <h2>Activity Log</h2>
+            <p class="subtitle">Real-time automation output</p>
+          </div>
+          <button class="btn btn-secondary" id="btnClearLogs">Clear</button>
+        </header>
+        <div class="log-console" id="logConsole">
+          <div class="log-line muted">Waiting for activity…</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
 </body>
 </html>

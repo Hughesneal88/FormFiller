@@ -1,0 +1,120 @@
+{
+  "respondent": 1,
+  "batch_id": "20260626_092044",
+  "timestamp": "2026-06-26T09:22:51.787044+00:00",
+  "status": "filled (preview)",
+  "fields_filled": 21,
+  "answers": {
+    "q1": "Papa Ashong",
+    "q2": "0207642219",
+    "q3": "Male",
+    "q4": 41,
+    "q5": "Married",
+    "q6": "No formal education",
+    "q7": "Other (Specify)",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Compound house",
+    "q12": "Family house",
+    "q13": 3,
+    "q14": "Fishing",
+    "q15": "No",
+    "q17": 22,
+    "q18": "Both owner and crew member",
+    "q19": "Yes",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society",
+      "Religious association"
+    ],
+    "q47": [
+      "Fishing equipment support",
+      "Fuel subsidy"
+    ],
+    "q24": [
+      "Gear damage",
+      "Pollution",
+      "Fuel cost"
+    ],
+    "q25": "No",
+    "q28": "Yes",
+    "q29": "Often",
+    "q30": "Yes",
+    "q31": "Moderate",
+    "q35": [
+      "Storms",
+      "Wear and tear"
+    ],
+    "q36": 384.31,
+    "q32": "No",
+    "q34": "Yes",
+    "q37": "Yes",
+    "q38": "High",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "Yes",
+    "q42": "Occasionally",
+    "q43": "Yes",
+    "q44": "Moderate",
+    "q45": "High",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Reduced catch",
+      "Irregular income",
+      "Increased costs",
+      "Lower prices"
+    ],
+    "q50": 267.3,
+    "q51": 54.79,
+    "q52": 4647.73,
+    "q53": "Unstable",
+    "q54": "Rarely",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Peak season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "Yes",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "No",
+    "q65": "Strong",
+    "q66": "Poor",
+    "q67": [
+      "Cold storage facilities",
+      "Premix fuel supply"
+    ],
+    "q68": "Yes",
+    "q69": "No",
+    "q70": "No",
+    "q72": [
+      "Fuel subsidy",
+      "Fishing equipment support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Cold store no dey, fish spoil quick. Premix fuel shortage delay our trip."
+  },
+  "meta": {
+    "respondent_index": 1,
+    "age": 41,
+    "name": "Papa Ashong"
+  },
+  "screenshot": "respondent_001.png",
+  "error": null
+}

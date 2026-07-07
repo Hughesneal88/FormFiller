@@ -1,0 +1,122 @@
+{
+  "title": "Artisanal Fisher Survey – Jamestown Fishing Harbour",
+  "url": "https://ee.kobotoolbox.org/x/lJHKBgCj",
+  "sections": [
+    {
+      "id": "A",
+      "title": "SECTION A: BACKGROUND CHARACTERISTICS OF RESPONDENTS",
+      "questions": [
+        {"id": "q1", "number": 1, "label": "What is your name?", "type": "text", "required": true},
+        {"id": "q2", "number": 2, "label": "What is your contact number?", "type": "text", "required": false},
+        {"id": "q3", "number": 3, "label": "What is your gender?", "type": "select_one", "required": true, "choices": ["Male", "Female"]},
+        {"id": "q4", "number": 4, "label": "What is your age? (years)", "type": "integer", "required": true},
+        {"id": "q5", "number": 5, "label": "What is your marital status?", "type": "select_one", "required": true, "choices": ["Single", "Married", "Divorced", "Widowed", "Separated"]},
+        {"id": "q6", "number": 6, "label": "What is your highest level of education?", "type": "select_one", "required": true, "choices": ["No formal education", "Primary education", "Junior High School", "Senior High School", "Vocational/Technical", "Tertiary education"]},
+        {"id": "q7", "number": 7, "label": "What is your religious affiliation?", "type": "select_one", "required": true, "choices": ["Christianity", "Islam", "Traditional religion", "Other (Specify)"]},
+        {"id": "q8", "number": 8, "label": "Which region do you come from?", "type": "select_one", "required": true, "choices": ["Greater Accra", "Central", "Volta", "Western", "Eastern", "Ashanti", "Northern", "Other (Specify)"]},
+        {"id": "q9", "number": 9, "label": "What is your town/community of residence?", "type": "text", "required": true},
+        {"id": "q10", "number": 10, "label": "What is your residential status?", "type": "select_one", "required": true, "choices": ["Native resident", "Migrant resident", "Temporary resident"]},
+        {"id": "q11", "number": 11, "label": "What type of dwelling do you live in?", "type": "select_one", "required": true, "choices": ["Compound house", "Self-contained house", "Wooden structure", "Kiosk/container", "Other (Specify)"]},
+        {"id": "q12", "number": 12, "label": "What is the ownership status of your dwelling?", "type": "select_one", "required": true, "choices": ["Owner occupied", "Rented", "Family house", "Employer provided", "Other (Specify)"]},
+        {"id": "q13", "number": 13, "label": "What is your household size? (persons)", "type": "integer", "required": true},
+        {"id": "q14", "number": 14, "label": "What is your major occupation?", "type": "select_one", "required": true, "choices": ["Fishing", "Fish processing", "Fish trading", "Farming", "Artisanship", "Other (Specify)"]},
+        {"id": "q15", "number": 15, "label": "Do you have any other source of income?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q16", "number": 16, "label": "What is your other source of income?", "type": "select_multiple", "required": false, "conditional": {"question": "q15", "value": "Yes"}, "choices": ["Trading", "Farming", "Transport business", "Processing", "Casual labour", "Other (Specify)"]},
+        {"id": "q17", "number": 17, "label": "How many years of fishing experience do you have? (years)", "type": "integer", "required": true},
+        {"id": "q18", "number": 18, "label": "What is your employment status in fishing?", "type": "select_one", "required": true, "choices": ["Canoe owner", "Crew member", "Both owner and crew member"]},
+        {"id": "q19", "number": 19, "label": "Do you own your fishing gear?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q20", "number": 20, "label": "What is your status in the fishing community?", "type": "select_one", "required": true, "choices": ["Ordinary member", "Opinion leader", "Chief fisherman", "Assembly representative", "Other (Specify)"]},
+        {"id": "q21", "number": 21, "label": "Do you belong to any association?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q22", "number": 22, "label": "Which association do you belong to?", "type": "select_multiple", "required": false, "conditional": {"question": "q21", "value": "Yes"}, "choices": ["Fisher association", "Fish processors association", "Cooperative society", "Savings group", "Religious association", "Other (Specify)"]}
+      ]
+    },
+    {
+      "id": "B",
+      "title": "SECTION B: OPERATIONAL CHALLENGES FACED BY ARTISANAL FISHERS",
+      "questions": [
+        {"id": "q24", "number": 24, "label": "What are the major operational challenges affecting your fishing activities?", "type": "select_multiple", "required": true, "choices": ["Fuel cost", "Fish stock decline", "Gear damage", "Pollution", "Inadequate storage facilities", "Credit constraints"]},
+        {"id": "q25", "number": 25, "label": "Do you experience high fuel costs?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q26", "number": 26, "label": "What is your average weekly expenditure on fuel? (GHS)", "type": "decimal", "required": false, "conditional": {"question": "q25", "value": "Yes"}},
+        {"id": "q27", "number": 27, "label": "How would you rate the severity of fuel cost challenges?", "type": "select_one", "required": false, "conditional": {"question": "q25", "value": "Yes"}, "choices": ["Very low", "Low", "Moderate", "High", "Very high"]},
+        {"id": "q28", "number": 28, "label": "Do you experience declining fish stock?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q29", "number": 29, "label": "How often do you experience declining fish stock?", "type": "select_one", "required": false, "conditional": {"question": "q28", "value": "Yes"}, "choices": ["Very often", "Often", "Occasionally", "Rarely"]},
+        {"id": "q30", "number": 30, "label": "Do you experience gear damage?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q31", "number": 31, "label": "How would you rate the severity of gear damage?", "type": "select_one", "required": false, "conditional": {"question": "q30", "value": "Yes"}, "choices": ["Low", "Moderate", "High", "Very high"]},
+        {"id": "q32", "number": 32, "label": "Do illegal fishing activities affect your catch?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q33", "number": 33, "label": "Which illegal fishing activities affect you?", "type": "select_multiple", "required": false, "conditional": {"question": "q32", "value": "Yes"}, "choices": ["Light fishing", "Pair trawling", "Dynamite fishing", "Use of chemicals", "Other (Specify)"]},
+        {"id": "q34", "number": 34, "label": "Do you experience pollution in fishing areas?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q35", "number": 35, "label": "What causes gear damage?", "type": "select_multiple", "required": false, "conditional": {"question": "q30", "value": "Yes"}, "choices": ["Trawlers", "Pollution", "Wear and tear", "Storms", "Other (Specify)"]},
+        {"id": "q36", "number": 36, "label": "What is your average monthly expenditure on gear repair/maintenance? (GHS)", "type": "decimal", "required": false, "conditional": {"question": "q30", "value": "Yes"}},
+        {"id": "q37", "number": 37, "label": "Does coastal pollution affect your fishing activities?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q38", "number": 38, "label": "How would you rate the severity of pollution?", "type": "select_one", "required": false, "conditional": {"question": "q37", "value": "Yes"}, "choices": ["Low", "Moderate", "High", "Very high"]},
+        {"id": "q39", "number": 39, "label": "Do you have access to cold storage facilities?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q40", "number": 40, "label": "Do you experience credit constraints?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q41", "number": 41, "label": "Do adverse weather conditions affect your fishing?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q42", "number": 42, "label": "How often do adverse weather conditions affect your fishing?", "type": "select_one", "required": false, "conditional": {"question": "q41", "value": "Yes"}, "choices": ["Very often", "Often", "Occasionally", "Rarely"]},
+        {"id": "q43", "number": 43, "label": "Do you experience competition from industrial trawlers?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q44", "number": 44, "label": "How would you rate the severity of trawler competition?", "type": "select_one", "required": false, "conditional": {"question": "q43", "value": "Yes"}, "choices": ["Very low", "Low", "Moderate", "High", "Very high"]},
+        {"id": "q45", "number": 45, "label": "How would you rate the overall severity of operational challenges?", "type": "select_one", "required": true, "choices": ["Very low", "Low", "Moderate", "High", "Very high"]},
+        {"id": "q46", "number": 46, "label": "Do government fisheries policies address your challenges?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q47", "number": 47, "label": "Which of the following support would you prefer?", "type": "select_multiple", "required": true, "choices": ["Fuel subsidy", "Training", "Fishing equipment support", "Credit support", "Other (Specify)"]}
+      ]
+    },
+    {
+      "id": "RANK",
+      "title": "Challenge Severity Ranking",
+      "questions": [
+        {
+          "id": "q48",
+          "number": 48,
+          "label": "Please rank the following operational challenges according to their severity (1 = Most severe, 6 = Least severe)",
+          "type": "rank",
+          "required": true,
+          "items": ["Fuel cost", "Fish stock decline", "Gear damage", "Pollution", "Inadequate storage facilities", "Credit constraints"],
+          "range": [1, 6]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "SECTION C: EFFECTS OF OPERATIONAL CHALLENGES ON INCOME",
+      "questions": [
+        {"id": "q49", "number": 49, "label": "How have operational challenges affected your fishing income?", "type": "select_multiple", "required": true, "choices": ["Reduced catch", "Increased costs", "Lower prices", "Irregular income", "Loss of fishing days"]},
+        {"id": "q50", "number": 50, "label": "What is your average weekly fish catch? (kg)", "type": "decimal", "required": true},
+        {"id": "q51", "number": 51, "label": "What is the average selling price of fish per kilogram? (GHS)", "type": "decimal", "required": true},
+        {"id": "q52", "number": 52, "label": "What is your average monthly household income? (GHS)", "type": "decimal", "required": true},
+        {"id": "q53", "number": 53, "label": "How would you describe the stability of your fishing income?", "type": "select_one", "required": true, "choices": ["Very unstable", "Unstable", "Moderately stable", "Stable", "Very stable"]},
+        {"id": "q54", "number": 54, "label": "How often do you experience income fluctuations?", "type": "select_one", "required": true, "choices": ["Always", "Often", "Sometimes", "Rarely"]},
+        {"id": "q55", "number": 55, "label": "Has your fishing income declined over the past 5 years?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q56", "number": 56, "label": "Do seasonal changes affect your income?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q57", "number": 57, "label": "Which season affects your income most?", "type": "select_one", "required": false, "conditional": {"question": "q56", "value": "Yes"}, "choices": ["Peak season", "Lean season", "Same for all seasons"]},
+        {"id": "q58", "number": 58, "label": "Which season has higher income?", "type": "select_one", "required": false, "conditional": {"question": "q56", "value": "Yes"}, "choices": ["Peak season", "Lean season"]},
+        {"id": "q59", "number": 59, "label": "Do you keep records of your fishing income?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q60", "number": 60, "label": "Are your fishing earnings sufficient to meet household needs?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q61", "number": 61, "label": "Do you save part of your fishing income?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q62", "number": 62, "label": "Do you reinvest part of your income in fishing?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q63", "number": 63, "label": "Do fluctuations in fish catch affect your income?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q64", "number": 64, "label": "Do operational costs affect your net income?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q65", "number": 65, "label": "How resilient is your fishing income to challenges?", "type": "select_one", "required": true, "choices": ["Very weak", "Weak", "Moderate", "Strong", "Very strong"]},
+        {"id": "q66", "number": 66, "label": "Overall, how would you rate your current fishing income?", "type": "select_one", "required": true, "choices": ["Very poor", "Poor", "Average", "Good", "Very good"]}
+      ]
+    },
+    {
+      "id": "D",
+      "title": "SECTION D: POLICY AND OPERATIONAL MEASURES FOR IMPROVING ARTISANAL FISHING",
+      "questions": [
+        {"id": "q67", "number": 67, "label": "What measures do you think can improve artisanal fishing operations?", "type": "select_multiple", "required": true, "choices": ["Credit facilities", "Cold storage facilities", "Premix fuel supply", "Fishing equipment", "Harbour infrastructure improvement", "Training programmes"]},
+        {"id": "q68", "number": 68, "label": "Are you aware of government fisheries policies?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q69", "number": 69, "label": "Have you participated in fisheries policy discussions?", "type": "select_one", "required": false, "conditional": {"question": "q68", "value": "Yes"}, "choices": ["Yes", "No"]},
+        {"id": "q70", "number": 70, "label": "Have you benefited from government fisheries support?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q71", "number": 71, "label": "What type of support have you received?", "type": "select_multiple", "required": false, "conditional": {"question": "q70", "value": "Yes"}, "choices": ["Fuel subsidy", "Training", "Fishing equipment support", "Credit support", "Other (Specify)"]},
+        {"id": "q72", "number": 72, "label": "What type of support do you need most?", "type": "select_multiple", "required": true, "choices": ["Fuel subsidy", "Training", "Fishing equipment support", "Credit support", "Other (Specify)"]},
+        {"id": "q73", "number": 73, "label": "Would improved harbour infrastructure help your operations?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q74", "number": 74, "label": "Would easier access to credit improve your fishing business?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q75", "number": 75, "label": "Would stricter enforcement against illegal fishing help?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q76", "number": 76, "label": "Should artisanal fishers be involved in policy making?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q77", "number": 77, "label": "Do you think cooperative societies can improve fishing?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q78", "number": 78, "label": "Do you intend to continue fishing in the next 5 years?", "type": "select_one", "required": true, "choices": ["Yes", "No"]},
+        {"id": "q79", "number": 79, "label": "What recommendations would you give for improving artisanal fishing at Jamestown Fishing Harbour?", "type": "text", "required": true, "multiline": true}
+      ]
+    }
+  ]
+}

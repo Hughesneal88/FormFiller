@@ -1,0 +1,11 @@
+{
+  "respondent": 1,
+  "batch_id": "20260626_090729",
+  "timestamp": "2026-06-26T09:11:54.575313+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {},
+  "meta": {},
+  "screenshot": null,
+  "error": "Page.evaluate: Target page, context or browser has been closed"
+}

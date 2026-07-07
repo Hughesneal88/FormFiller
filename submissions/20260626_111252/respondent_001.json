@@ -1,0 +1,121 @@
+{
+  "respondent": 1,
+  "batch_id": "20260626_111252",
+  "timestamp": "2026-06-26T11:21:54.127411+00:00",
+  "status": "filled (preview)",
+  "fields_filled": 73,
+  "answers": {
+    "q1": "Okai Osei",
+    "q2": "0546553015",
+    "q3": "Male",
+    "q4": 37,
+    "q5": "Divorced",
+    "q6": "Junior High School",
+    "q7": "Traditional religion",
+    "q8": "Greater Accra",
+    "q9": "Labadi",
+    "q10": "Native resident",
+    "q11": "Kiosk/container",
+    "q12": "Rented",
+    "q13": 6,
+    "q14": "Fishing",
+    "q15": "Yes",
+    "q16": [
+      "Trading",
+      "Processing",
+      "Farming"
+    ],
+    "q17": 18,
+    "q18": "Crew member",
+    "q19": "No",
+    "q20": "Opinion leader",
+    "q21": "Yes",
+    "q22": [
+      "Fisher association",
+      "Cooperative society"
+    ],
+    "q47": [
+      "Fuel subsidy"
+    ],
+    "q24": [
+      "Gear damage",
+      "Pollution",
+      "Fuel cost",
+      "Credit constraints"
+    ],
+    "q25": "Yes",
+    "q26": 807.92,
+    "q27": "Moderate",
+    "q28": "Yes",
+    "q29": "Occasionally",
+    "q30": "No",
+    "q32": "No",
+    "q34": "Yes",
+    "q37": "Yes",
+    "q38": "Very high",
+    "q39": "Yes",
+    "q40": "Yes",
+    "q41": "Yes",
+    "q42": "Often",
+    "q43": "Yes",
+    "q44": "Low",
+    "q45": "Low",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Irregular income",
+      "Loss of fishing days",
+      "Reduced catch"
+    ],
+    "q50": 231.0,
+    "q51": 47.81,
+    "q52": 4272.77,
+    "q53": "Moderately stable",
+    "q54": "Sometimes",
+    "q55": "No",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Lean season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "Yes",
+    "q62": "No",
+    "q63": "Yes",
+    "q64": "No",
+    "q65": "Very weak",
+    "q66": "Poor",
+    "q67": [
+      "Cold storage facilities",
+      "Harbour infrastructure improvement"
+    ],
+    "q68": "No",
+    "q70": "Yes",
+    "q71": [
+      "Training"
+    ],
+    "q72": [
+      "Fishing equipment support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "Yes",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Cold store no dey, fish spoil quick. Harbour need repair, boats cant land proper."
+  },
+  "meta": {
+    "respondent_index": 1,
+    "age": 37,
+    "name": "Okai Osei"
+  },
+  "screenshot": "respondent_001.png",
+  "error": null
+}

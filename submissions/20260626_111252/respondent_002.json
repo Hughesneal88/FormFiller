@@ -1,0 +1,11 @@
+{
+  "respondent": 2,
+  "batch_id": "20260626_111252",
+  "timestamp": "2026-06-26T11:23:03.350965+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {},
+  "meta": {},
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    121 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

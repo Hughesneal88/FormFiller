@@ -1,0 +1,6 @@
+{
+  "_note": "Answer logic is implemented in app/answer_engine.py per project guidelines.",
+  "strategy": "guided",
+  "target_submissions": "adjustable (1–100)",
+  "test_batch_size": 5
+}
