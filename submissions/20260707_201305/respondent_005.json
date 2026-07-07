@@ -1,0 +1,11 @@
+{
+  "respondent": 5,
+  "batch_id": "20260707_201305",
+  "timestamp": "2026-07-07T20:19:42.313237+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {},
+  "meta": {},
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n"
+}

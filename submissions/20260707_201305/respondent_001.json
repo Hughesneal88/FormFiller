@@ -1,0 +1,11 @@
+{
+  "respondent": 1,
+  "batch_id": "20260707_201305",
+  "timestamp": "2026-07-07T20:14:08.050331+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {},
+  "meta": {},
+  "screenshot": null,
+  "error": "Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://ee.kobotoolbox.org/x/lJHKBgCj\", waiting until \"domcontentloaded\"\n"
+}
