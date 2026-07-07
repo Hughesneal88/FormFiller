@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 from typing import Any, Callable
 
-from playwright.async_api import Page, async_playwright
+from playwright.async_api import Page, TimeoutError as PlaywrightTimeoutError, async_playwright
 
 from app.answer_engine import AnswerEngine
 from app.schema import load_schema
@@ -205,9 +205,26 @@ class SurveyFiller:
 
     async def _wait_for_form(self, page: Page) -> None:
         page.set_default_timeout(60000)
-        await page.goto(self.SURVEY_URL, wait_until="domcontentloaded")
-        await page.wait_for_selector("form.or", timeout=60000)
-        await page.wait_for_selector(".question", timeout=60000)
+        attempts = 3
+        for attempt in range(1, attempts + 1):
+            try:
+                await page.goto(self.SURVEY_URL, wait_until="domcontentloaded", timeout=90000)
+                await page.wait_for_selector("form.or", timeout=60000)
+                await page.wait_for_selector(".question", timeout=60000)
+                break
+            except PlaywrightTimeoutError:
+                if attempt >= attempts:
+                    raise
+                backoff_s = 3 * attempt
+                self.log(
+                    f"Survey load timed out (attempt {attempt}/{attempts}); retrying in {backoff_s}s…",
+                    "warn",
+                )
+                try:
+                    await page.goto("about:blank", wait_until="domcontentloaded", timeout=15000)
+                except Exception:
+                    pass
+                await asyncio.sleep(backoff_s)
         page.set_default_timeout(self.FIELD_TIMEOUT_MS)
         await asyncio.sleep(2.0)
 
