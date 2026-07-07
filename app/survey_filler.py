@@ -508,12 +508,17 @@ class SurveyFiller:
         submit: bool = True,
         delay_ms: int = 300,
         between_submissions_ms: int = 2000,
+        workers: int = 1,
     ) -> list[dict[str, Any]]:
         self._stop_requested = False
-        results: list[dict[str, Any]] = []
+        ordered_results: list[dict[str, Any] | None] = [None] * count
         batch_id = create_batch(count, submit=submit)
         self._batch_id = batch_id
-        self.log(f"Batch {batch_id} started ({count} submission(s), submit={submit})", "info")
+        worker_count = max(1, min(workers, count))
+        self.log(
+            f"Batch {batch_id} started ({count} submission(s), submit={submit}, threads={worker_count})",
+            "info",
+        )
 
         if not headless:
             self.log("Keep the browser window open until each respondent finishes.", "info")
@@ -528,47 +533,62 @@ class SurveyFiller:
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             )
 
+            queue: asyncio.Queue[int] = asyncio.Queue()
             for i in range(count):
-                if self._stop_requested:
-                    self.log("Stopped by user", "warn")
-                    break
+                queue.put_nowait(i)
 
-                page = await context.new_page()
-                try:
-                    result = await self.fill_one(
-                        page, i, submit=submit, delay_ms=delay_ms, batch_id=batch_id
-                    )
-                    results.append(result)
-                except Exception as e:
-                    msg = str(e)
-                    if "closed" in msg.lower():
-                        self.log(
-                            f"Respondent {i + 1} failed: browser was closed. "
-                            "Do not close the browser window during Quick Test.",
-                            "error",
-                        )
-                    else:
-                        self.log(f"Respondent {i + 1} failed: {e}", "error")
-                    err_result = {
-                        "respondent": i + 1,
-                        "status": "error",
-                        "error": msg,
-                        "batch_id": batch_id,
-                    }
-                    results.append(err_result)
-                    if batch_id:
-                        save_submission(
-                            batch_id, i + 1, answers={}, status="error",
-                            fields_filled=0, error=msg,
-                        )
-                finally:
+            async def _worker(worker_num: int) -> None:
+                while not self._stop_requested:
                     try:
-                        await page.close()
-                    except Exception:
-                        pass
+                        i = queue.get_nowait()
+                    except asyncio.QueueEmpty:
+                        break
 
-                if i < count - 1 and between_submissions_ms > 0:
-                    await asyncio.sleep(between_submissions_ms / 1000)
+                    page = await context.new_page()
+                    try:
+                        result = await self.fill_one(
+                            page, i, submit=submit, delay_ms=delay_ms, batch_id=batch_id
+                        )
+                        ordered_results[i] = result
+                    except Exception as e:
+                        msg = str(e)
+                        if "closed" in msg.lower():
+                            self.log(
+                                f"Respondent {i + 1} failed: browser was closed. "
+                                "Do not close the browser window during Quick Test.",
+                                "error",
+                            )
+                        else:
+                            self.log(f"Respondent {i + 1} failed on thread {worker_num}: {e}", "error")
+                        err_result = {
+                            "respondent": i + 1,
+                            "status": "error",
+                            "error": msg,
+                            "batch_id": batch_id,
+                        }
+                        ordered_results[i] = err_result
+                        if batch_id:
+                            save_submission(
+                                batch_id, i + 1, answers={}, status="error",
+                                fields_filled=0, error=msg,
+                            )
+                    finally:
+                        queue.task_done()
+                        try:
+                            await page.close()
+                        except Exception:
+                            pass
+
+                    if between_submissions_ms > 0 and not self._stop_requested:
+                        await asyncio.sleep(between_submissions_ms / 1000)
+
+            worker_tasks = [
+                asyncio.create_task(_worker(worker_num + 1))
+                for worker_num in range(worker_count)
+            ]
+            await asyncio.gather(*worker_tasks)
+
+            results = [r for r in ordered_results if r is not None]
 
             await browser.close()
 
