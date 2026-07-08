@@ -1,4 +1,5 @@
 /browsers/
+/submissions/
 .venv/
 __pycache__/
 *.pyc
