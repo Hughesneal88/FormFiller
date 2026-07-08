@@ -1,0 +1,132 @@
+{
+  "respondent": 13,
+  "batch_id": "20260707_222552",
+  "timestamp": "2026-07-08T00:22:36.862842+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Papa Amoah",
+    "q2": "0598352100",
+    "q3": "Male",
+    "q4": 36,
+    "q5": "Single",
+    "q6": "Senior High School",
+    "q7": "Islam",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Migrant resident",
+    "q11": "Kiosk/container",
+    "q12": "Family house",
+    "q13": 3,
+    "q14": "Fishing",
+    "q15": "No",
+    "q16": [
+      "Casual labour",
+      "Trading"
+    ],
+    "q17": 17,
+    "q18": "Both owner and crew member",
+    "q19": "No",
+    "q20": "Opinion leader",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society"
+    ],
+    "q47": [
+      "Fuel subsidy",
+      "Credit support",
+      "Fishing equipment support"
+    ],
+    "q24": [
+      "Gear damage",
+      "Credit constraints"
+    ],
+    "q25": "Yes",
+    "q26": 772.06,
+    "q27": "Moderate",
+    "q28": "Yes",
+    "q29": "Often",
+    "q30": "Yes",
+    "q31": "High",
+    "q35": [
+      "Trawlers",
+      "Pollution",
+      "Storms"
+    ],
+    "q36": 296.46,
+    "q32": "Yes",
+    "q33": [
+      "Light fishing"
+    ],
+    "q34": "Yes",
+    "q37": "No",
+    "q38": "Moderate",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "Yes",
+    "q42": "Often",
+    "q43": "Yes",
+    "q44": "Very high",
+    "q45": "Low",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Lower prices",
+      "Increased costs"
+    ],
+    "q50": 135.8,
+    "q51": 59.87,
+    "q52": 3903.7,
+    "q53": "Stable",
+    "q54": "Sometimes",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Same for all seasons",
+    "q58": "Lean season",
+    "q59": "Yes",
+    "q60": "No",
+    "q61": "Yes",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "No",
+    "q65": "Strong",
+    "q66": "Average",
+    "q67": [
+      "Premix fuel supply",
+      "Credit facilities",
+      "Cold storage facilities",
+      "Training programmes"
+    ],
+    "q68": "No",
+    "q69": "No",
+    "q70": "Yes",
+    "q71": [
+      "Fuel subsidy"
+    ],
+    "q72": [
+      "Fishing equipment support",
+      "Fuel subsidy"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Premix fuel shortage delay our trip. We need credit and loan for canoe. Cold store no dey, fish spoil quick."
+  },
+  "meta": {
+    "respondent_index": 13,
+    "age": 36,
+    "name": "Papa Amoah"
+  },
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Target page, context or browser has been closed\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    7 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

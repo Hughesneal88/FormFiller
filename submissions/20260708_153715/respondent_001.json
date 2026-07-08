@@ -1,0 +1,134 @@
+{
+  "respondent": 1,
+  "batch_id": "20260708_153715",
+  "timestamp": "2026-07-08T15:39:05.762954+00:00",
+  "status": "filled (preview)",
+  "fields_filled": 72,
+  "answers": {
+    "q1": "Kofi Osei Quaye",
+    "q2": "0249613605",
+    "q3": "Male",
+    "q4": 28,
+    "q5": "Single",
+    "q6": "Primary education",
+    "q7": "Traditional religion",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Compound house",
+    "q12": "Family house",
+    "q13": 7,
+    "q14": "Fishing",
+    "q15": "Yes",
+    "q16": [
+      "Trading",
+      "Processing",
+      "Casual labour"
+    ],
+    "q17": 8,
+    "q18": "Crew member",
+    "q19": "No",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society"
+    ],
+    "q47": [
+      "Other (Specify)",
+      "Fuel subsidy"
+    ],
+    "q24": [
+      "Gear damage",
+      "Pollution"
+    ],
+    "q25": "Yes",
+    "q26": 1004.48,
+    "q27": "High",
+    "q28": "Yes",
+    "q29": "Often",
+    "q30": "No",
+    "q31": "High",
+    "q35": [
+      "Pollution"
+    ],
+    "q36": 504.32,
+    "q32": "Yes",
+    "q33": [
+      "Use of chemicals",
+      "Pair trawling"
+    ],
+    "q34": "Yes",
+    "q37": "Yes",
+    "q38": "High",
+    "q39": "No",
+    "q40": "No",
+    "q41": "Yes",
+    "q42": "Often",
+    "q43": "No",
+    "q44": "High",
+    "q45": "Very high",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Reduced catch",
+      "Loss of fishing days",
+      "Irregular income",
+      "Lower prices"
+    ],
+    "q50": 262.4,
+    "q51": 79.84,
+    "q52": 3040.97,
+    "q53": "Very unstable",
+    "q54": "Sometimes",
+    "q55": "No",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Lean season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "No",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "No",
+    "q65": "Moderate",
+    "q66": "Poor",
+    "q67": [
+      "Fishing equipment",
+      "Credit facilities",
+      "Harbour infrastructure improvement"
+    ],
+    "q68": "No",
+    "q69": "Yes",
+    "q70": "Yes",
+    "q71": [
+      "Credit support",
+      "Fuel subsidy"
+    ],
+    "q72": [
+      "Fishing equipment support",
+      "Fuel subsidy",
+      "Credit support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "No",
+    "q78": "Yes",
+    "q79": "Govment shud help with net and canoe. We need credit and loan for canoe. Harbour need repair, boats cant land proper."
+  },
+  "meta": {
+    "respondent_index": 1,
+    "age": 28,
+    "name": "Kofi Osei Quaye"
+  },
+  "screenshot": "respondent_001.png",
+  "error": null
+}

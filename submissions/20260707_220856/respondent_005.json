@@ -1,0 +1,135 @@
+{
+  "respondent": 5,
+  "batch_id": "20260707_220856",
+  "timestamp": "2026-07-07T22:15:40.703358+00:00",
+  "status": "filled (preview)",
+  "fields_filled": 66,
+  "answers": {
+    "q1": "Kojo Amoah Asante",
+    "q2": "0573362164",
+    "q3": "Male",
+    "q4": 39,
+    "q5": "Divorced",
+    "q6": "Junior High School",
+    "q7": "Christianity",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Compound house",
+    "q12": "Family house",
+    "q13": 7,
+    "q14": "Fishing",
+    "q15": "No",
+    "q16": [
+      "Trading",
+      "Processing",
+      "Casual labour"
+    ],
+    "q17": 20,
+    "q18": "Both owner and crew member",
+    "q19": "Yes",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society",
+      "Fisher association"
+    ],
+    "q47": [
+      "Fuel subsidy",
+      "Training"
+    ],
+    "q24": [
+      "Pollution",
+      "Credit constraints",
+      "Fish stock decline",
+      "Fuel cost"
+    ],
+    "q25": "Yes",
+    "q26": 1053.36,
+    "q27": "Moderate",
+    "q28": "Yes",
+    "q29": "Often",
+    "q30": "Yes",
+    "q31": "High",
+    "q35": [
+      "Pollution"
+    ],
+    "q36": 569.3,
+    "q32": "No",
+    "q33": [
+      "Pair trawling"
+    ],
+    "q34": "Yes",
+    "q37": "Yes",
+    "q38": "Very high",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "Yes",
+    "q42": "Often",
+    "q43": "No",
+    "q44": "Very low",
+    "q45": "High",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Reduced catch",
+      "Loss of fishing days",
+      "Increased costs",
+      "Lower prices"
+    ],
+    "q50": 297.9,
+    "q51": 52.32,
+    "q52": 4627.0,
+    "q53": "Stable",
+    "q54": "Often",
+    "q55": "Yes",
+    "q56": "No",
+    "q57": "Peak season",
+    "q58": "Lean season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "No",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "No",
+    "q65": "Moderate",
+    "q66": "Good",
+    "q67": [
+      "Credit facilities",
+      "Cold storage facilities",
+      "Fishing equipment",
+      "Training programmes"
+    ],
+    "q68": "No",
+    "q69": "Yes",
+    "q70": "No",
+    "q71": [
+      "Credit support",
+      "Fuel subsidy"
+    ],
+    "q72": [
+      "Fuel subsidy"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "No",
+    "q78": "Yes",
+    "q79": "We need credit and loan for canoe. Cold store no dey, fish spoil quick. Govment shud help with net and canoe."
+  },
+  "meta": {
+    "respondent_index": 5,
+    "age": 39,
+    "name": "Kojo Amoah Asante"
+  },
+  "screenshot": "respondent_005.png",
+  "error": null
+}

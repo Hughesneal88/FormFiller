@@ -1,0 +1,132 @@
+{
+  "respondent": 3,
+  "batch_id": "20260707_215410",
+  "timestamp": "2026-07-07T21:57:00.179728+00:00",
+  "status": "filled (preview)",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Tawiah Aggrey",
+    "q2": "0503423454",
+    "q3": "Male",
+    "q4": 27,
+    "q5": "Widowed",
+    "q6": "Junior High School",
+    "q7": "Christianity",
+    "q8": "Northern",
+    "q9": "Ngleshie",
+    "q10": "Native resident",
+    "q11": "Compound house",
+    "q12": "Rented",
+    "q13": 4,
+    "q14": "Fishing",
+    "q15": "Yes",
+    "q16": [
+      "Trading",
+      "Processing",
+      "Casual labour"
+    ],
+    "q17": 7,
+    "q18": "Crew member",
+    "q19": "No",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Savings group",
+      "Fisher association"
+    ],
+    "q47": [
+      "Credit support"
+    ],
+    "q24": [
+      "Gear damage",
+      "Fuel cost",
+      "Fish stock decline"
+    ],
+    "q25": "Yes",
+    "q26": 766.29,
+    "q27": "Very high",
+    "q28": "Yes",
+    "q29": "Often",
+    "q30": "Yes",
+    "q31": "High",
+    "q35": [
+      "Wear and tear"
+    ],
+    "q36": 495.64,
+    "q32": "No",
+    "q33": [
+      "Pair trawling",
+      "Use of chemicals"
+    ],
+    "q34": "Yes",
+    "q37": "Yes",
+    "q38": "Moderate",
+    "q39": "No",
+    "q40": "No",
+    "q41": "No",
+    "q42": "Occasionally",
+    "q43": "No",
+    "q44": "Low",
+    "q45": "High",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Lower prices",
+      "Increased costs",
+      "Loss of fishing days",
+      "Irregular income"
+    ],
+    "q50": 269.6,
+    "q51": 57.8,
+    "q52": 3376.79,
+    "q53": "Moderately stable",
+    "q54": "Sometimes",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Peak season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "No",
+    "q62": "No",
+    "q63": "Yes",
+    "q64": "No",
+    "q65": "Weak",
+    "q66": "Good",
+    "q67": [
+      "Premix fuel supply",
+      "Cold storage facilities"
+    ],
+    "q68": "No",
+    "q69": "Yes",
+    "q70": "No",
+    "q71": [
+      "Credit support",
+      "Fishing equipment support"
+    ],
+    "q72": [
+      "Credit support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "No",
+    "q78": "No",
+    "q79": "Premix fuel shortage delay our trip. Cold store no dey, fish spoil quick."
+  },
+  "meta": {
+    "respondent_index": 3,
+    "age": 27,
+    "name": "Tawiah Aggrey"
+  },
+  "screenshot": null,
+  "error": null
+}

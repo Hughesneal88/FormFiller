@@ -1,0 +1,131 @@
+{
+  "respondent": 1,
+  "batch_id": "20260707_221706",
+  "timestamp": "2026-07-07T22:17:27.564055+00:00",
+  "status": "filled",
+  "fields_filled": 20,
+  "answers": {
+    "q1": "Kwesi Boateng",
+    "q2": "0593051673",
+    "q3": "Male",
+    "q4": 38,
+    "q5": "Divorced",
+    "q6": "Primary education",
+    "q7": "Other (Specify)",
+    "q8": "Northern",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Kiosk/container",
+    "q12": "Family house",
+    "q13": 3,
+    "q14": "Fishing",
+    "q15": "No",
+    "q16": [
+      "Casual labour"
+    ],
+    "q17": 17,
+    "q18": "Both owner and crew member",
+    "q19": "Yes",
+    "q20": "Opinion leader",
+    "q21": "Yes",
+    "q22": [
+      "Fisher association",
+      "Savings group"
+    ],
+    "q47": [
+      "Fishing equipment support"
+    ],
+    "q24": [
+      "Inadequate storage facilities",
+      "Pollution",
+      "Fuel cost"
+    ],
+    "q25": "Yes",
+    "q26": 1059.53,
+    "q27": "Low",
+    "q28": "Yes",
+    "q29": "Rarely",
+    "q30": "Yes",
+    "q31": "Moderate",
+    "q35": [
+      "Trawlers"
+    ],
+    "q36": 551.04,
+    "q32": "No",
+    "q33": [
+      "Use of chemicals",
+      "Pair trawling",
+      "Light fishing"
+    ],
+    "q34": "Yes",
+    "q37": "No",
+    "q38": "Very high",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "No",
+    "q42": "Occasionally",
+    "q43": "No",
+    "q44": "High",
+    "q45": "High",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Reduced catch",
+      "Irregular income",
+      "Increased costs"
+    ],
+    "q50": 341.5,
+    "q51": 60.06,
+    "q52": 4765.47,
+    "q53": "Stable",
+    "q54": "Often",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Lean season",
+    "q58": "Peak season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "Yes",
+    "q62": "No",
+    "q63": "Yes",
+    "q64": "Yes",
+    "q65": "Moderate",
+    "q66": "Very good",
+    "q67": [
+      "Premix fuel supply",
+      "Fishing equipment",
+      "Credit facilities"
+    ],
+    "q68": "No",
+    "q69": "No",
+    "q70": "Yes",
+    "q71": [
+      "Credit support"
+    ],
+    "q72": [
+      "Fuel subsidy",
+      "Fishing equipment support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "Yes",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Premix fuel shortage delay our trip. Govment shud help with net and canoe. We need credit and loan for canoe."
+  },
+  "meta": {
+    "respondent_index": 1,
+    "age": 38,
+    "name": "Kwesi Boateng"
+  },
+  "screenshot": "respondent_001.png",
+  "error": null
+}

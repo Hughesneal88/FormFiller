@@ -1,0 +1,130 @@
+{
+  "respondent": 1,
+  "batch_id": "20260707_215410",
+  "timestamp": "2026-07-07T21:55:26.404888+00:00",
+  "status": "filled (preview)",
+  "fields_filled": 66,
+  "answers": {
+    "q1": "Ashong Osei",
+    "q2": "0571729946",
+    "q3": "Male",
+    "q4": 26,
+    "q5": "Married",
+    "q6": "Vocational/Technical",
+    "q7": "Christianity",
+    "q8": "Eastern",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Compound house",
+    "q12": "Rented",
+    "q13": 4,
+    "q14": "Fishing",
+    "q15": "Yes",
+    "q16": [
+      "Casual labour"
+    ],
+    "q17": 9,
+    "q18": "Crew member",
+    "q19": "No",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society",
+      "Savings group"
+    ],
+    "q47": [
+      "Fuel subsidy"
+    ],
+    "q24": [
+      "Gear damage",
+      "Fish stock decline",
+      "Credit constraints"
+    ],
+    "q25": "No",
+    "q26": 303.88,
+    "q27": "Very high",
+    "q28": "Yes",
+    "q29": "Occasionally",
+    "q30": "No",
+    "q31": "High",
+    "q35": [
+      "Wear and tear",
+      "Pollution"
+    ],
+    "q36": 240.25,
+    "q32": "No",
+    "q33": [
+      "Pair trawling"
+    ],
+    "q34": "Yes",
+    "q37": "Yes",
+    "q38": "Moderate",
+    "q39": "Yes",
+    "q40": "Yes",
+    "q41": "Yes",
+    "q42": "Occasionally",
+    "q43": "No",
+    "q44": "Low",
+    "q45": "Moderate",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Lower prices",
+      "Reduced catch",
+      "Increased costs"
+    ],
+    "q50": 255.7,
+    "q51": 75.42,
+    "q52": 3331.32,
+    "q53": "Stable",
+    "q54": "Sometimes",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Lean season",
+    "q58": "Peak season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "Yes",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "No",
+    "q65": "Strong",
+    "q66": "Very poor",
+    "q67": [
+      "Fishing equipment",
+      "Premix fuel supply"
+    ],
+    "q68": "Yes",
+    "q69": "No",
+    "q70": "Yes",
+    "q71": [
+      "Fuel subsidy"
+    ],
+    "q72": [
+      "Fuel subsidy",
+      "Credit support",
+      "Fishing equipment support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "No",
+    "q78": "Yes",
+    "q79": "Govment shud help with net and canoe. Premix fuel shortage delay our trip."
+  },
+  "meta": {
+    "respondent_index": 1,
+    "age": 26,
+    "name": "Ashong Osei"
+  },
+  "screenshot": "respondent_001.png",
+  "error": null
+}

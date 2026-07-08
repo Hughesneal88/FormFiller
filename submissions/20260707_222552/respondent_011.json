@@ -1,0 +1,136 @@
+{
+  "respondent": 11,
+  "batch_id": "20260707_222552",
+  "timestamp": "2026-07-08T00:21:27.074601+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Odoi Sowah",
+    "q2": "0273900725",
+    "q3": "Male",
+    "q4": 30,
+    "q5": "Separated",
+    "q6": "Junior High School",
+    "q7": "Other (Specify)",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Kiosk/container",
+    "q12": "Family house",
+    "q13": 3,
+    "q14": "Fishing",
+    "q15": "Yes",
+    "q16": [
+      "Processing",
+      "Other (Specify)",
+      "Farming"
+    ],
+    "q17": 11,
+    "q18": "Both owner and crew member",
+    "q19": "Yes",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society",
+      "Religious association"
+    ],
+    "q47": [
+      "Fishing equipment support",
+      "Training",
+      "Credit support"
+    ],
+    "q24": [
+      "Inadequate storage facilities",
+      "Pollution",
+      "Gear damage",
+      "Fuel cost"
+    ],
+    "q25": "Yes",
+    "q26": 632.33,
+    "q27": "Very high",
+    "q28": "Yes",
+    "q29": "Occasionally",
+    "q30": "Yes",
+    "q31": "Moderate",
+    "q35": [
+      "Wear and tear",
+      "Pollution"
+    ],
+    "q36": 267.52,
+    "q32": "No",
+    "q33": [
+      "Pair trawling",
+      "Use of chemicals"
+    ],
+    "q34": "Yes",
+    "q37": "No",
+    "q38": "Moderate",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "No",
+    "q42": "Often",
+    "q43": "Yes",
+    "q44": "Very high",
+    "q45": "Moderate",
+    "q46": "No",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Loss of fishing days",
+      "Increased costs"
+    ],
+    "q50": 309.4,
+    "q51": 53.61,
+    "q52": 3815.96,
+    "q53": "Moderately stable",
+    "q54": "Always",
+    "q55": "Yes",
+    "q56": "No",
+    "q57": "Lean season",
+    "q58": "Lean season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "No",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "Yes",
+    "q65": "Moderate",
+    "q66": "Very poor",
+    "q67": [
+      "Training programmes",
+      "Harbour infrastructure improvement"
+    ],
+    "q68": "Yes",
+    "q69": "Yes",
+    "q70": "Yes",
+    "q71": [
+      "Fuel subsidy",
+      "Other (Specify)"
+    ],
+    "q72": [
+      "Training",
+      "Fishing equipment support",
+      "Fuel subsidy"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "No",
+    "q78": "Yes",
+    "q79": "Training from govment will help us small. Harbour need repair, boats cant land proper."
+  },
+  "meta": {
+    "respondent_index": 11,
+    "age": 30,
+    "name": "Odoi Sowah"
+  },
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    3 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

@@ -1,0 +1,135 @@
+{
+  "respondent": 2,
+  "batch_id": "20260707_220856",
+  "timestamp": "2026-07-07T22:11:44.060962+00:00",
+  "status": "filled (preview)",
+  "fields_filled": 67,
+  "answers": {
+    "q1": "Laryea Boateng Laryea",
+    "q2": "0208747261",
+    "q3": "Male",
+    "q4": 28,
+    "q5": "Single",
+    "q6": "Junior High School",
+    "q7": "Other (Specify)",
+    "q8": "Greater Accra",
+    "q9": "Korle Gonno",
+    "q10": "Native resident",
+    "q11": "Other (Specify)",
+    "q12": "Family house",
+    "q13": 7,
+    "q14": "Fishing",
+    "q15": "Yes",
+    "q16": [
+      "Casual labour"
+    ],
+    "q17": 12,
+    "q18": "Canoe owner",
+    "q19": "Yes",
+    "q20": "Opinion leader",
+    "q21": "No",
+    "q22": [
+      "Fisher association"
+    ],
+    "q47": [
+      "Fishing equipment support"
+    ],
+    "q24": [
+      "Gear damage",
+      "Pollution",
+      "Credit constraints",
+      "Fuel cost"
+    ],
+    "q25": "Yes",
+    "q26": 483.29,
+    "q27": "Moderate",
+    "q28": "Yes",
+    "q29": "Very often",
+    "q30": "Yes",
+    "q31": "High",
+    "q35": [
+      "Pollution",
+      "Trawlers",
+      "Storms"
+    ],
+    "q36": 214.97,
+    "q32": "Yes",
+    "q33": [
+      "Use of chemicals",
+      "Light fishing",
+      "Pair trawling"
+    ],
+    "q34": "Yes",
+    "q37": "No",
+    "q38": "Low",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "Yes",
+    "q42": "Often",
+    "q43": "No",
+    "q44": "High",
+    "q45": "High",
+    "q46": "No",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Loss of fishing days",
+      "Reduced catch",
+      "Increased costs"
+    ],
+    "q50": 216.9,
+    "q51": 48.51,
+    "q52": 3456.05,
+    "q53": "Stable",
+    "q54": "Sometimes",
+    "q55": "Yes",
+    "q56": "No",
+    "q57": "Peak season",
+    "q58": "Lean season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "No",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "No",
+    "q65": "Weak",
+    "q66": "Poor",
+    "q67": [
+      "Premix fuel supply",
+      "Harbour infrastructure improvement",
+      "Fishing equipment"
+    ],
+    "q68": "Yes",
+    "q69": "No",
+    "q70": "No",
+    "q71": [
+      "Fishing equipment support",
+      "Fuel subsidy"
+    ],
+    "q72": [
+      "Fuel subsidy",
+      "Credit support",
+      "Fishing equipment support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Premix fuel shortage delay our trip. Harbour need repair, boats cant land proper. Govment shud help with net and canoe."
+  },
+  "meta": {
+    "respondent_index": 2,
+    "age": 28,
+    "name": "Laryea Boateng Laryea"
+  },
+  "screenshot": "respondent_002.png",
+  "error": null
+}

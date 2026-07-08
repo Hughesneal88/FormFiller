@@ -1,0 +1,133 @@
+{
+  "respondent": 4,
+  "batch_id": "20260707_222552",
+  "timestamp": "2026-07-07T22:36:32.138301+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Narh Nortey",
+    "q2": "0596003100",
+    "q3": "Male",
+    "q4": 30,
+    "q5": "Widowed",
+    "q6": "Junior High School",
+    "q7": "Christianity",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Compound house",
+    "q12": "Family house",
+    "q13": 4,
+    "q14": "Fishing",
+    "q15": "No",
+    "q16": [
+      "Casual labour",
+      "Processing"
+    ],
+    "q17": 11,
+    "q18": "Crew member",
+    "q19": "No",
+    "q20": "Opinion leader",
+    "q21": "Yes",
+    "q22": [
+      "Religious association",
+      "Fisher association"
+    ],
+    "q47": [
+      "Training",
+      "Credit support",
+      "Fishing equipment support"
+    ],
+    "q24": [
+      "Fish stock decline",
+      "Fuel cost"
+    ],
+    "q25": "Yes",
+    "q26": 1059.42,
+    "q27": "Moderate",
+    "q28": "Yes",
+    "q29": "Often",
+    "q30": "Yes",
+    "q31": "High",
+    "q35": [
+      "Wear and tear",
+      "Pollution",
+      "Storms"
+    ],
+    "q36": 491.06,
+    "q32": "No",
+    "q33": [
+      "Pair trawling",
+      "Light fishing"
+    ],
+    "q34": "Yes",
+    "q37": "No",
+    "q38": "High",
+    "q39": "Yes",
+    "q40": "Yes",
+    "q41": "No",
+    "q42": "Rarely",
+    "q43": "No",
+    "q44": "Moderate",
+    "q45": "Moderate",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Increased costs",
+      "Loss of fishing days",
+      "Lower prices"
+    ],
+    "q50": 168.4,
+    "q51": 50.45,
+    "q52": 3767.23,
+    "q53": "Moderately stable",
+    "q54": "Always",
+    "q55": "Yes",
+    "q56": "No",
+    "q57": "Peak season",
+    "q58": "Lean season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "Yes",
+    "q62": "Yes",
+    "q63": "No",
+    "q64": "Yes",
+    "q65": "Weak",
+    "q66": "Poor",
+    "q67": [
+      "Harbour infrastructure improvement",
+      "Fishing equipment"
+    ],
+    "q68": "Yes",
+    "q69": "No",
+    "q70": "Yes",
+    "q71": [
+      "Credit support",
+      "Fishing equipment support"
+    ],
+    "q72": [
+      "Credit support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Harbour need repair, boats cant land proper. Govment shud help with net and canoe."
+  },
+  "meta": {
+    "respondent_index": 4,
+    "age": 30,
+    "name": "Narh Nortey"
+  },
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    121 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

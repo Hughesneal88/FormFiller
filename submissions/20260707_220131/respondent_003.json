@@ -1,0 +1,134 @@
+{
+  "respondent": 3,
+  "batch_id": "20260707_220131",
+  "timestamp": "2026-07-07T22:05:36.894491+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Ama Mensah Aidoo",
+    "q2": "0592116881",
+    "q3": "Male",
+    "q4": 46,
+    "q5": "Separated",
+    "q6": "No formal education",
+    "q7": "Traditional religion",
+    "q8": "Greater Accra",
+    "q9": "Chorkor",
+    "q10": "Native resident",
+    "q11": "Compound house",
+    "q12": "Family house",
+    "q13": 3,
+    "q14": "Fishing",
+    "q15": "Yes",
+    "q16": [
+      "Trading",
+      "Casual labour",
+      "Transport business"
+    ],
+    "q17": 27,
+    "q18": "Both owner and crew member",
+    "q19": "Yes",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society"
+    ],
+    "q47": [
+      "Fishing equipment support",
+      "Fuel subsidy",
+      "Credit support"
+    ],
+    "q24": [
+      "Fish stock decline",
+      "Gear damage"
+    ],
+    "q25": "Yes",
+    "q26": 867.12,
+    "q27": "Low",
+    "q28": "Yes",
+    "q29": "Occasionally",
+    "q30": "No",
+    "q31": "Very high",
+    "q35": [
+      "Pollution"
+    ],
+    "q36": 546.85,
+    "q32": "Yes",
+    "q33": [
+      "Light fishing",
+      "Other (Specify)"
+    ],
+    "q34": "Yes",
+    "q37": "Yes",
+    "q38": "Moderate",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "No",
+    "q42": "Very often",
+    "q43": "Yes",
+    "q44": "High",
+    "q45": "Moderate",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Reduced catch",
+      "Irregular income",
+      "Lower prices",
+      "Loss of fishing days"
+    ],
+    "q50": 196.3,
+    "q51": 51.64,
+    "q52": 4956.5,
+    "q53": "Unstable",
+    "q54": "Often",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Lean season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "No",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "Yes",
+    "q65": "Weak",
+    "q66": "Poor",
+    "q67": [
+      "Training programmes",
+      "Fishing equipment",
+      "Harbour infrastructure improvement"
+    ],
+    "q68": "No",
+    "q69": "Yes",
+    "q70": "No",
+    "q71": [
+      "Fishing equipment support",
+      "Fuel subsidy"
+    ],
+    "q72": [
+      "Fuel subsidy",
+      "Fishing equipment support"
+    ],
+    "q73": "Yes",
+    "q74": "No",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Training from govment will help us small. Govment shud help with net and canoe. Harbour need repair, boats cant land proper."
+  },
+  "meta": {
+    "respondent_index": 3,
+    "age": 46,
+    "name": "Ama Mensah Aidoo"
+  },
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    120 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

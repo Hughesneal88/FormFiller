@@ -1,0 +1,133 @@
+{
+  "respondent": 10,
+  "batch_id": "20260707_222552",
+  "timestamp": "2026-07-07T22:55:41.989291+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Kofi Nortey",
+    "q2": "0597648378",
+    "q3": "Male",
+    "q4": 33,
+    "q5": "Widowed",
+    "q6": "Junior High School",
+    "q7": "Traditional religion",
+    "q8": "Greater Accra",
+    "q9": "Akoto Lante",
+    "q10": "Native resident",
+    "q11": "Self-contained house",
+    "q12": "Family house",
+    "q13": 6,
+    "q14": "Fishing",
+    "q15": "No",
+    "q16": [
+      "Processing",
+      "Trading",
+      "Casual labour"
+    ],
+    "q17": 17,
+    "q18": "Crew member",
+    "q19": "No",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society",
+      "Religious association"
+    ],
+    "q47": [
+      "Fishing equipment support"
+    ],
+    "q24": [
+      "Pollution",
+      "Fuel cost"
+    ],
+    "q25": "Yes",
+    "q26": 703.5,
+    "q27": "Very low",
+    "q28": "Yes",
+    "q29": "Occasionally",
+    "q30": "Yes",
+    "q31": "High",
+    "q35": [
+      "Pollution"
+    ],
+    "q36": 323.89,
+    "q32": "No",
+    "q33": [
+      "Light fishing"
+    ],
+    "q34": "Yes",
+    "q37": "No",
+    "q38": "Moderate",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "Yes",
+    "q42": "Occasionally",
+    "q43": "Yes",
+    "q44": "High",
+    "q45": "Very high",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Reduced catch",
+      "Lower prices",
+      "Increased costs",
+      "Irregular income"
+    ],
+    "q50": 319.2,
+    "q51": 73.04,
+    "q52": 3541.97,
+    "q53": "Very stable",
+    "q54": "Often",
+    "q55": "No",
+    "q56": "Yes",
+    "q57": "Same for all seasons",
+    "q58": "Peak season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "Yes",
+    "q62": "Yes",
+    "q63": "No",
+    "q64": "Yes",
+    "q65": "Moderate",
+    "q66": "Poor",
+    "q67": [
+      "Cold storage facilities",
+      "Training programmes",
+      "Premix fuel supply"
+    ],
+    "q68": "Yes",
+    "q69": "No",
+    "q70": "Yes",
+    "q71": [
+      "Training",
+      "Credit support"
+    ],
+    "q72": [
+      "Fuel subsidy",
+      "Credit support",
+      "Fishing equipment support"
+    ],
+    "q73": "No",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "No",
+    "q79": "Cold store no dey, fish spoil quick. Training from govment will help us small. Premix fuel shortage delay our trip."
+  },
+  "meta": {
+    "respondent_index": 10,
+    "age": 33,
+    "name": "Kofi Nortey"
+  },
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    121 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

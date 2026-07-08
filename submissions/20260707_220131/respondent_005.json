@@ -1,0 +1,135 @@
+{
+  "respondent": 5,
+  "batch_id": "20260707_220131",
+  "timestamp": "2026-07-07T22:07:41.989114+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Akosua Amoah",
+    "q2": "0204673599",
+    "q3": "Male",
+    "q4": 40,
+    "q5": "Married",
+    "q6": "Primary education",
+    "q7": "Christianity",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Wooden structure",
+    "q12": "Family house",
+    "q13": 3,
+    "q14": "Fishing",
+    "q15": "No",
+    "q16": [
+      "Processing"
+    ],
+    "q17": 20,
+    "q18": "Both owner and crew member",
+    "q19": "Yes",
+    "q20": "Ordinary member",
+    "q21": "No",
+    "q22": [
+      "Fisher association",
+      "Savings group"
+    ],
+    "q47": [
+      "Fuel subsidy",
+      "Fishing equipment support",
+      "Other (Specify)"
+    ],
+    "q24": [
+      "Fish stock decline",
+      "Fuel cost",
+      "Credit constraints"
+    ],
+    "q25": "Yes",
+    "q26": 630.29,
+    "q27": "Moderate",
+    "q28": "No",
+    "q29": "Often",
+    "q30": "Yes",
+    "q31": "High",
+    "q35": [
+      "Pollution",
+      "Wear and tear"
+    ],
+    "q36": 424.5,
+    "q32": "Yes",
+    "q33": [
+      "Use of chemicals",
+      "Light fishing",
+      "Pair trawling"
+    ],
+    "q34": "Yes",
+    "q37": "Yes",
+    "q38": "Moderate",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "No",
+    "q42": "Rarely",
+    "q43": "No",
+    "q44": "Moderate",
+    "q45": "High",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Reduced catch",
+      "Loss of fishing days",
+      "Irregular income",
+      "Increased costs"
+    ],
+    "q50": 304.0,
+    "q51": 63.18,
+    "q52": 4269.31,
+    "q53": "Very stable",
+    "q54": "Always",
+    "q55": "No",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Lean season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "Yes",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "Yes",
+    "q65": "Strong",
+    "q66": "Poor",
+    "q67": [
+      "Cold storage facilities",
+      "Premix fuel supply"
+    ],
+    "q68": "No",
+    "q69": "No",
+    "q70": "Yes",
+    "q71": [
+      "Credit support",
+      "Fishing equipment support"
+    ],
+    "q72": [
+      "Fishing equipment support",
+      "Credit support"
+    ],
+    "q73": "No",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Cold store no dey, fish spoil quick. Premix fuel shortage delay our trip."
+  },
+  "meta": {
+    "respondent_index": 5,
+    "age": 40,
+    "name": "Akosua Amoah"
+  },
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    119 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

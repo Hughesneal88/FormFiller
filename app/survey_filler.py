@@ -13,7 +13,7 @@ LogFn = Callable[[str, str], Any]
 
 # JavaScript helpers run inside the Enketo page for reliable interaction.
 _FILL_QUESTION_JS = """
-({ questionNum, qType, value, rankItem }) => {
+({ questionNum, qType, value, rankItem, specifyVal }) => {
   const normalize = (s) => String(s || '').replace(/\\s+/g, ' ').trim().toLowerCase();
 
   const findQuestion = () => {
@@ -116,6 +116,32 @@ _FILL_QUESTION_JS = """
       if (lbl) lbl.click();
       else input.click();
     }
+    
+    if (input && input.checked && (normalize(choice).includes('other') || normalize(choice).includes('specify'))) {
+      let specifyField = q.querySelector('input[type="text"], textarea');
+      if (!specifyField) {
+        let next = q.nextElementSibling;
+        for (let i = 0; i < 3; i++) {
+          if (next && next.classList.contains('question')) {
+            const labelText = (next.innerText || '').toLowerCase();
+            if (labelText.includes('specify') || labelText.includes('other')) {
+              specifyField = next.querySelector('input[type="text"], textarea');
+              if (specifyField) break;
+            }
+          }
+          if (next) next = next.nextElementSibling;
+        }
+      }
+      if (specifyField && !specifyField.value) {
+        specifyField.focus();
+        specifyField.click();
+        specifyField.value = specifyVal || 'Other detail';
+        specifyField.dispatchEvent(new Event('input', { bubbles: true }));
+        specifyField.dispatchEvent(new Event('change', { bubbles: true }));
+        specifyField.dispatchEvent(new Event('blur', { bubbles: true }));
+      }
+    }
+    
     return input ? input.checked : true;
   };
 
@@ -358,17 +384,32 @@ class SurveyFiller:
         for attempt in range(1, attempts + 1):
             try:
                 await page.goto(self.SURVEY_URL, wait_until="domcontentloaded", timeout=90000)
-                # Handle draft restore prompt:
-                # - test runs: discard previous draft
-                # - submit runs: load previous draft and continue to completion
+                
+                # Wait for the form to load or the draft dialog to be handled.
+                # We check for a visible '.question' or handle a visible draft prompt periodically.
                 draft_mode = "load" if submit else "discard"
-                for _ in range(3):
-                    handled = await page.evaluate(_HANDLE_DRAFT_PROMPT_JS, {"mode": draft_mode})
-                    if not handled or not handled.get("handled"):
+                form_ready = False
+                for _ in range(40):  # Wait up to 20 seconds total (40 * 0.5s)
+                    is_loaded = await page.evaluate("""() => {
+                        const q = document.querySelector('.question');
+                        if (!q) return false;
+                        const r = q.getBoundingClientRect();
+                        return r.width > 0 && r.height > 0;
+                    }""")
+                    if is_loaded:
+                        form_ready = True
                         break
-                    await asyncio.sleep(0.8)
-                await page.wait_for_selector("form.or", timeout=60000)
-                await page.wait_for_selector(".question", timeout=60000)
+                    
+                    handled = await page.evaluate(_HANDLE_DRAFT_PROMPT_JS, {"mode": draft_mode})
+                    if handled and handled.get("handled"):
+                        self.log(f"Draft prompt handled: {handled.get('action')}", "info")
+                        await asyncio.sleep(0.5)
+                    
+                    await asyncio.sleep(0.5)
+
+                if not form_ready:
+                    await page.wait_for_selector("form.or", timeout=30000)
+                    await page.wait_for_selector(".question", timeout=30000)
                 break
             except PlaywrightTimeoutError:
                 if attempt >= attempts:
@@ -428,6 +469,7 @@ class SurveyFiller:
         value: Any,
         *,
         rank_item: str | None = None,
+        specify_val: str | None = None,
     ) -> bool:
         qtype = question["type"]
         if qtype == "rank":
@@ -438,6 +480,7 @@ class SurveyFiller:
             "qType": qtype,
             "value": value,
             "rankItem": rank_item,
+            "specifyVal": specify_val,
         }
         try:
             result = await page.evaluate(_FILL_QUESTION_JS, payload)
@@ -463,6 +506,7 @@ class SurveyFiller:
         page: Page,
         question: dict[str, Any],
         value: Any,
+        answers: dict[str, Any] = None,
     ) -> bool:
         number = question["number"]
         self.log(f"Filling Q{number} ({question['type']})...", "info")
@@ -479,12 +523,16 @@ class SurveyFiller:
                 await asyncio.sleep(0.2)
             return ok
 
+        specify_val = None
+        if value == "Other (Specify)" and answers:
+            specify_val = answers.get(f"q{number}a")
+
         # Aggressive retry logic - more retries with longer delays
         max_retries = 5
         delays = [0.2, 0.5, 1.0, 1.5, 2.0]
         
         for attempt in range(max_retries):
-            if await self._fill_via_js(page, question, value):
+            if await self._fill_via_js(page, question, value, specify_val=specify_val):
                 return True
             
             if attempt < max_retries - 1:
@@ -590,7 +638,7 @@ class SurveyFiller:
                     continue
 
                 try:
-                    ok = await self._fill_question(page, question, value)
+                    ok = await self._fill_question(page, question, value, answers)
                     if ok:
                         filled += 1
                     else:
@@ -625,7 +673,7 @@ class SurveyFiller:
                 }
                 value = self._fallback_value_for_live_question(live_q, answers)
                 try:
-                    ok = await self._fill_question(page, q_for_fill, value)
+                    ok = await self._fill_question(page, q_for_fill, value, answers)
                     if ok:
                         filled += 1
                         progress += 1
@@ -702,11 +750,15 @@ class SurveyFiller:
             async with async_playwright() as p:
                 browser = await p.chromium.launch(
                     headless=headless,
-                    args=["--disable-blink-features=AutomationControlled"],
+                    args=[
+                        "--disable-blink-features=AutomationControlled",
+                        "--ignore-certificate-errors",
+                    ],
                 )
                 context = await browser.new_context(
                     viewport={"width": 1280, "height": 900},
                     user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                    ignore_https_errors=True,
                 )
 
                 for i in range(count):

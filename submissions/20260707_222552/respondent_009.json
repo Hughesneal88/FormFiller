@@ -1,0 +1,132 @@
+{
+  "respondent": 9,
+  "batch_id": "20260707_222552",
+  "timestamp": "2026-07-07T22:52:30.362553+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Lomotey Baidoo",
+    "q2": "0273019328",
+    "q3": "Male",
+    "q4": 45,
+    "q5": "Single",
+    "q6": "No formal education",
+    "q7": "Other (Specify)",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Wooden structure",
+    "q12": "Rented",
+    "q13": 6,
+    "q14": "Fishing",
+    "q15": "No",
+    "q16": [
+      "Casual labour",
+      "Trading",
+      "Processing"
+    ],
+    "q17": 24,
+    "q18": "Both owner and crew member",
+    "q19": "Yes",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Religious association"
+    ],
+    "q47": [
+      "Fuel subsidy"
+    ],
+    "q24": [
+      "Pollution",
+      "Gear damage",
+      "Fish stock decline",
+      "Fuel cost"
+    ],
+    "q25": "Yes",
+    "q26": 954.39,
+    "q27": "Moderate",
+    "q28": "No",
+    "q29": "Occasionally",
+    "q30": "No",
+    "q31": "Moderate",
+    "q35": [
+      "Storms"
+    ],
+    "q36": 470.69,
+    "q32": "Yes",
+    "q33": [
+      "Pair trawling",
+      "Use of chemicals",
+      "Light fishing"
+    ],
+    "q34": "Yes",
+    "q37": "No",
+    "q38": "High",
+    "q39": "Yes",
+    "q40": "No",
+    "q41": "No",
+    "q42": "Often",
+    "q43": "No",
+    "q44": "Low",
+    "q45": "Very high",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Loss of fishing days",
+      "Irregular income"
+    ],
+    "q50": 314.1,
+    "q51": 47.84,
+    "q52": 4725.05,
+    "q53": "Moderately stable",
+    "q54": "Often",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Lean season",
+    "q59": "Yes",
+    "q60": "No",
+    "q61": "Yes",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "Yes",
+    "q65": "Weak",
+    "q66": "Poor",
+    "q67": [
+      "Harbour infrastructure improvement",
+      "Cold storage facilities",
+      "Training programmes"
+    ],
+    "q68": "No",
+    "q69": "No",
+    "q70": "No",
+    "q71": [
+      "Credit support"
+    ],
+    "q72": [
+      "Training",
+      "Credit support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Harbour need repair, boats cant land proper. Cold store no dey, fish spoil quick. Training from govment will help us small."
+  },
+  "meta": {
+    "respondent_index": 9,
+    "age": 45,
+    "name": "Lomotey Baidoo"
+  },
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    121 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

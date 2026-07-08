@@ -1,0 +1,135 @@
+{
+  "respondent": 4,
+  "batch_id": "20260707_221713",
+  "timestamp": "2026-07-07T22:28:09.657285+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Tawiah Boateng Baidoo",
+    "q2": "0591443299",
+    "q3": "Male",
+    "q4": 26,
+    "q5": "Divorced",
+    "q6": "No formal education",
+    "q7": "Islam",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Kiosk/container",
+    "q12": "Owner occupied",
+    "q13": 4,
+    "q14": "Fishing",
+    "q15": "Yes",
+    "q16": [
+      "Trading",
+      "Casual labour"
+    ],
+    "q17": 8,
+    "q18": "Both owner and crew member",
+    "q19": "Yes",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society"
+    ],
+    "q47": [
+      "Fishing equipment support",
+      "Other (Specify)",
+      "Fuel subsidy"
+    ],
+    "q24": [
+      "Fish stock decline",
+      "Fuel cost",
+      "Inadequate storage facilities",
+      "Gear damage"
+    ],
+    "q25": "Yes",
+    "q26": 788.35,
+    "q27": "Very high",
+    "q28": "No",
+    "q29": "Occasionally",
+    "q30": "Yes",
+    "q31": "Very high",
+    "q35": [
+      "Wear and tear",
+      "Pollution",
+      "Storms"
+    ],
+    "q36": 547.08,
+    "q32": "No",
+    "q33": [
+      "Pair trawling"
+    ],
+    "q34": "Yes",
+    "q37": "No",
+    "q38": "Moderate",
+    "q39": "Yes",
+    "q40": "Yes",
+    "q41": "Yes",
+    "q42": "Very often",
+    "q43": "Yes",
+    "q44": "High",
+    "q45": "Moderate",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Loss of fishing days",
+      "Lower prices",
+      "Increased costs",
+      "Reduced catch"
+    ],
+    "q50": 275.8,
+    "q51": 53.03,
+    "q52": 3000,
+    "q53": "Very unstable",
+    "q54": "Always",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Peak season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "No",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "Yes",
+    "q65": "Strong",
+    "q66": "Poor",
+    "q67": [
+      "Credit facilities",
+      "Premix fuel supply",
+      "Fishing equipment",
+      "Cold storage facilities"
+    ],
+    "q68": "Yes",
+    "q69": "Yes",
+    "q70": "Yes",
+    "q71": [
+      "Other (Specify)"
+    ],
+    "q72": [
+      "Fuel subsidy"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "We need credit and loan for canoe. Premix fuel shortage delay our trip. Govment shud help with net and canoe."
+  },
+  "meta": {
+    "respondent_index": 4,
+    "age": 26,
+    "name": "Tawiah Boateng Baidoo"
+  },
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    121 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

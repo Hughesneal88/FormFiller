@@ -1,0 +1,135 @@
+{
+  "respondent": 2,
+  "batch_id": "20260707_215410",
+  "timestamp": "2026-07-07T21:56:46.770780+00:00",
+  "status": "filled (preview)",
+  "fields_filled": 68,
+  "answers": {
+    "q1": "Tawiah Aidoo",
+    "q2": "0501928385",
+    "q3": "Male",
+    "q4": 39,
+    "q5": "Separated",
+    "q6": "Junior High School",
+    "q7": "Other (Specify)",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Self-contained house",
+    "q12": "Rented",
+    "q13": 2,
+    "q14": "Fishing",
+    "q15": "Yes",
+    "q16": [
+      "Trading",
+      "Casual labour"
+    ],
+    "q17": 22,
+    "q18": "Both owner and crew member",
+    "q19": "Yes",
+    "q20": "Ordinary member",
+    "q21": "Yes",
+    "q22": [
+      "Cooperative society",
+      "Fisher association"
+    ],
+    "q47": [
+      "Credit support",
+      "Fuel subsidy"
+    ],
+    "q24": [
+      "Gear damage",
+      "Credit constraints"
+    ],
+    "q25": "Yes",
+    "q26": 530.45,
+    "q27": "Low",
+    "q28": "No",
+    "q29": "Often",
+    "q30": "Yes",
+    "q31": "Moderate",
+    "q35": [
+      "Wear and tear",
+      "Storms",
+      "Pollution"
+    ],
+    "q36": 243.66,
+    "q32": "No",
+    "q33": [
+      "Light fishing",
+      "Use of chemicals",
+      "Pair trawling"
+    ],
+    "q34": "Yes",
+    "q37": "Yes",
+    "q38": "High",
+    "q39": "No",
+    "q40": "Yes",
+    "q41": "No",
+    "q42": "Often",
+    "q43": "No",
+    "q44": "Very low",
+    "q45": "Very high",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Loss of fishing days",
+      "Lower prices",
+      "Increased costs"
+    ],
+    "q50": 135.8,
+    "q51": 61.2,
+    "q52": 5042.11,
+    "q53": "Unstable",
+    "q54": "Often",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Lean season",
+    "q59": "No",
+    "q60": "No",
+    "q61": "No",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "Yes",
+    "q65": "Moderate",
+    "q66": "Very poor",
+    "q67": [
+      "Cold storage facilities",
+      "Harbour infrastructure improvement",
+      "Premix fuel supply",
+      "Fishing equipment"
+    ],
+    "q68": "Yes",
+    "q69": "Yes",
+    "q70": "No",
+    "q71": [
+      "Fuel subsidy",
+      "Credit support"
+    ],
+    "q72": [
+      "Credit support"
+    ],
+    "q73": "Yes",
+    "q74": "No",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Cold store no dey, fish spoil quick. Harbour need repair, boats cant land proper. Premix fuel shortage delay our trip."
+  },
+  "meta": {
+    "respondent_index": 2,
+    "age": 39,
+    "name": "Tawiah Aidoo"
+  },
+  "screenshot": "respondent_002.png",
+  "error": null
+}

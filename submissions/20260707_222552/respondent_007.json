@@ -1,0 +1,135 @@
+{
+  "respondent": 7,
+  "batch_id": "20260707_222552",
+  "timestamp": "2026-07-07T22:46:07.064303+00:00",
+  "status": "error",
+  "fields_filled": 0,
+  "answers": {
+    "q1": "Abena Asante Asante",
+    "q2": "0546983162",
+    "q3": "Male",
+    "q4": 29,
+    "q5": "Widowed",
+    "q6": "Vocational/Technical",
+    "q7": "Islam",
+    "q8": "Greater Accra",
+    "q9": "Jamestown",
+    "q10": "Native resident",
+    "q11": "Self-contained house",
+    "q12": "Owner occupied",
+    "q13": 3,
+    "q14": "Fishing",
+    "q15": "No",
+    "q16": [
+      "Casual labour",
+      "Processing",
+      "Trading"
+    ],
+    "q17": 12,
+    "q18": "Canoe owner",
+    "q19": "Yes",
+    "q20": "Opinion leader",
+    "q21": "Yes",
+    "q22": [
+      "Religious association",
+      "Cooperative society"
+    ],
+    "q47": [
+      "Training",
+      "Fuel subsidy"
+    ],
+    "q24": [
+      "Pollution",
+      "Gear damage",
+      "Fuel cost",
+      "Credit constraints"
+    ],
+    "q25": "Yes",
+    "q26": 1133.69,
+    "q27": "High",
+    "q28": "Yes",
+    "q29": "Occasionally",
+    "q30": "Yes",
+    "q31": "Moderate",
+    "q35": [
+      "Wear and tear"
+    ],
+    "q36": 318.3,
+    "q32": "Yes",
+    "q33": [
+      "Light fishing",
+      "Pair trawling",
+      "Dynamite fishing"
+    ],
+    "q34": "Yes",
+    "q37": "No",
+    "q38": "High",
+    "q39": "Yes",
+    "q40": "Yes",
+    "q41": "No",
+    "q42": "Rarely",
+    "q43": "Yes",
+    "q44": "High",
+    "q45": "Low",
+    "q46": "Yes",
+    "q48": {
+      "Fuel cost": 1,
+      "Gear damage": 2,
+      "Pollution": 3,
+      "Credit constraints": 4,
+      "Fish stock decline": 5,
+      "Inadequate storage facilities": 6
+    },
+    "q49": [
+      "Loss of fishing days",
+      "Reduced catch",
+      "Irregular income"
+    ],
+    "q50": 294.6,
+    "q51": 45.47,
+    "q52": 3622.06,
+    "q53": "Stable",
+    "q54": "Always",
+    "q55": "Yes",
+    "q56": "Yes",
+    "q57": "Peak season",
+    "q58": "Peak season",
+    "q59": "Yes",
+    "q60": "No",
+    "q61": "No",
+    "q62": "Yes",
+    "q63": "Yes",
+    "q64": "No",
+    "q65": "Moderate",
+    "q66": "Very poor",
+    "q67": [
+      "Harbour infrastructure improvement",
+      "Premix fuel supply",
+      "Fishing equipment"
+    ],
+    "q68": "Yes",
+    "q69": "No",
+    "q70": "No",
+    "q71": [
+      "Training",
+      "Fishing equipment support"
+    ],
+    "q72": [
+      "Fishing equipment support"
+    ],
+    "q73": "Yes",
+    "q74": "Yes",
+    "q75": "No",
+    "q76": "Yes",
+    "q77": "Yes",
+    "q78": "Yes",
+    "q79": "Harbour need repair, boats cant land proper. Premix fuel shortage delay our trip. Govment shud help with net and canoe."
+  },
+  "meta": {
+    "respondent_index": 7,
+    "age": 29,
+    "name": "Abena Asante Asante"
+  },
+  "screenshot": null,
+  "error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"form.or\") to be visible\n    121 × locator resolved to hidden <form dir=\"ltr\" autocomplete=\"off\" novalidate=\"novalidate\" class=\"or clearfix pages\" data-form-id=\"aZG3EzCXub8TP9v5AUSHun\">…</form>\n"
+}

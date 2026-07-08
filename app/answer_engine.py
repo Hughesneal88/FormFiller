@@ -163,27 +163,27 @@ class AnswerEngine:
 
         a["q5"] = random.choice(["Single", "Married", "Divorced", "Widowed", "Separated"])
 
-        # Q6: mostly first 3 education options
         a["q6"] = pick_weighted(
             ["No formal education", "Primary education", "Junior High School",
              "Senior High School", "Vocational/Technical", "Tertiary education"],
             [35, 30, 25, 5, 3, 2],
         )
 
-        # Q7: ranking 3,1,4,2 → Traditional, Christianity, Other, Islam
         a["q7"] = pick_from_ranking(
             ["Christianity", "Islam", "Traditional religion", "Other (Specify)"],
             [3, 1, 4, 2],
             count=1,
         )[0]
+        if a["q7"] == "Other (Specify)":
+            a["q7a"] = "No religion"
 
-        # Q8: 80% Greater Accra
         a["q8"] = pick_weighted(
             ["Greater Accra", "Central", "Volta", "Western", "Eastern", "Ashanti", "Northern", "Other (Specify)"],
             [80, 5, 4, 3, 3, 2, 2, 1],
         )
+        if a["q8"] == "Other (Specify)":
+            a["q8a"] = "Oti Region"
 
-        # Q9: mostly Jamestown, occasionally nearby fishing communities
         a["q9"] = pick_weighted(
             [
                 "Jamestown", "Chorkor", "Korle Gonno", "Bukom", "Akoto Lante",
@@ -192,39 +192,42 @@ class AnswerEngine:
             [82, 5, 4, 3, 2, 2, 1, 1],
         )
 
-        # Q10: mostly Native resident (option 1)
         a["q10"] = pick_weighted(
             ["Native resident", "Migrant resident", "Temporary resident"],
             [75, 18, 7],
         )
 
-        # Q11: ranking 1,3,4,2
         a["q11"] = pick_from_ranking(
             ["Compound house", "Self-contained house", "Wooden structure", "Kiosk/container", "Other (Specify)"],
             [1, 3, 4, 2],
             count=1,
         )[0]
+        if a["q11"] == "Other (Specify)":
+            a["q11a"] = "Tent"
 
-        # Q12: mostly Rented and Family house
         a["q12"] = pick_weighted(
             ["Owner occupied", "Rented", "Family house", "Employer provided", "Other (Specify)"],
             [10, 45, 40, 3, 2],
         )
+        if a["q12"] == "Other (Specify)":
+            a["q12a"] = "Squatting"
 
         a["q13"] = random.randint(2, 7)
         a["q14"] = "Fishing"
+        if a["q14"] == "Other (Specify)":
+            a["q14a"] = "Trading other things"
+
         a["q15"] = pick_yes(0.55)
         # Always generate q16 regardless of q15 answer
-        a["q16"] = pick_multiple_weighted(
+        a["q16"] = pick_weighted(
             ["Trading", "Farming", "Transport business", "Processing", "Casual labour", "Other (Specify)"],
             [40, 5, 8, 35, 38, 3],
-            min_count=1,
-            max_count=3,
         )
+        if a["q16"] == "Other (Specify)":
+            a["q16a"] = "Teaching"
 
         a["q17"] = fishing_experience_for_age(age)
 
-        # Q18: mostly Both or Crew member
         a["q18"] = pick_weighted(
             ["Canoe owner", "Crew member", "Both owner and crew member"],
             [15, 40, 45],
@@ -232,96 +235,94 @@ class AnswerEngine:
 
         a["q19"] = gear_ownership_for_status(a["q18"])
 
-        # Q20: Ordinary member or Opinion leader
         a["q20"] = pick_weighted(
             ["Ordinary member", "Opinion leader", "Chief fisherman", "Assembly representative", "Other (Specify)"],
             [55, 40, 3, 1, 1],
         )
+        if a["q20"] == "Other (Specify)":
+            a["q20a"] = "Elder"
 
         a["q21"] = pick_yes(0.82)
-
-        # Always generate q22 value regardless of q21 answer
-        a["q22"] = pick_multiple_weighted(
+        # Always generate q22, q23 regardless of q21 answer
+        a["q22"] = pick_weighted(
             ["Fisher association", "Fish processors association", "Cooperative society",
              "Savings group", "Religious association", "Other (Specify)"],
             [50, 8, 45, 10, 5, 2],
+        )
+        if a["q22"] == "Other (Specify)":
+            a["q22a"] = "Youth group"
+        
+        a["q23"] = random.randint(1, min(15, max(2, age - 18)))
+
+        # --- Section B ---
+        challenges = pick_multiple_weighted(
+            ["fuel cost too high", "fish stock declining every day", "damage to our fishing gear", "pollution in the sea", "no cold storage here", "lack of credit and loans"],
+            [40, 12, 35, 30, 2, 15],
             min_count=1,
             max_count=2,
         )
-
-        # --- Section B ---
-        # Q47 first (needed for Q24 correlation) — least options 5 (Other) and 2 (Training)
-        a["q47"] = pick_multiple_weighted(
-            ["Fuel subsidy", "Training", "Fishing equipment support", "Credit support", "Other (Specify)"],
-            [30, 5, 28, 25, 3],
-            min_count=1,
-            max_count=3,
-        )
-
-        # Q24: mostly fuel, gear damage, pollution; least inadequate storage
-        a["q24"] = pick_multiple_weighted(
-            ["Fuel cost", "Fish stock decline", "Gear damage", "Pollution",
-             "Inadequate storage facilities", "Credit constraints"],
-            [40, 12, 35, 30, 2, 15],
-            min_count=2,
-            max_count=4,
-        )
+        a["q24"] = " and ".join(challenges).capitalize() + "."
 
         a["q25"] = pick_yes(0.90)
         # Always generate q26, q27 regardless of q25 answer
-        a["q26"] = round(random.uniform(300, 1200), 2)
+        a["q26"] = random.randint(300, 1200)
         a["q27"] = pick_weighted(
             ["Very low", "Low", "Moderate", "High", "Very high"],
             [5, 20, 25, 30, 20],
         )
 
-        a["q28"] = pick_yes(0.70)
+        a["q28"] = pick_yes(0.78)
         # Always generate q29 regardless of q28 answer
-        a["q29"] = pick_weighted(["Very often", "Often", "Occasionally", "Rarely"], [10, 45, 40, 5])
+        a["q29"] = pick_weighted(["Very often", "Often", "Occasionally", "Rarely"], [15, 45, 35, 5])
 
-        a["q30"] = pick_yes(0.55)
-        # Always generate q31, q35, q36 regardless of q30 answer
-        a["q31"] = pick_weighted(["Low", "Moderate", "High", "Very high"], [10, 45, 35, 10])
-        a["q35"] = pick_multiple_weighted(
-            ["Trawlers", "Pollution", "Wear and tear", "Storms", "Other (Specify)"],
-            [15, 40, 45, 10, 3],
-            min_count=1,
-            max_count=3,
-        )
-        a["q36"] = round(random.uniform(200, 600), 2)
+        a["q30"] = pick_yes(0.85)
+        # Always generate q31 regardless of q30 answer
+        a["q31"] = pick_weighted(["Low", "Moderate", "High", "Very high"], [10, 40, 35, 15])
 
-        a["q32"] = pick_yes(0.40)  # 60% no
+        a["q32"] = pick_yes(0.60)
         # Always generate q33 regardless of q32 answer
-        a["q33"] = pick_multiple_weighted(
+        a["q33"] = pick_weighted(
             ["Light fishing", "Pair trawling", "Dynamite fishing", "Use of chemicals", "Other (Specify)"],
-            [40, 38, 5, 35, 5],
-            min_count=1,
-            max_count=3,
+            [40, 35, 5, 18, 2],
         )
+        if a["q33"] == "Other (Specify)":
+            a["q33a"] = "Illegal nets"
 
-        a["q34"] = "Yes"
-        a["q37"] = pick_yes(0.65)
+        a["q34"] = pick_yes(0.70)
+        # Always generate q35, q36 regardless of q34 answer
+        a["q35"] = pick_weighted(
+            ["Trawlers", "Pollution", "Wear and tear", "Storms", "Other (Specify)"],
+            [20, 35, 38, 5, 2],
+        )
+        if a["q35"] == "Other (Specify)":
+            a["q35a"] = "Accident"
+        a["q36"] = random.randint(200, 600)
+
+        a["q37"] = pick_yes(0.80)
         # Always generate q38 regardless of q37 answer
-        a["q38"] = pick_weighted(["Low", "Moderate", "High", "Very high"], [10, 45, 35, 10])
+        a["q38"] = pick_weighted(["Low", "Moderate", "High", "Very high"], [10, 40, 35, 15])
 
-        a["q39"] = pick_yes(0.90)
-        a["q40"] = pick_yes(0.15)  # 85% no
-        a["q41"] = pick_yes(0.67)
+        a["q39"] = pick_yes(0.12)
+        a["q40"] = pick_yes(0.65)
+        
+        a["q41"] = pick_yes(0.70)
         # Always generate q42 regardless of q41 answer
-        a["q42"] = pick_weighted(["Very often", "Often", "Occasionally", "Rarely"], [15, 35, 35, 15])
+        a["q42"] = pick_weighted(["Very often", "Often", "Occasionally", "Rarely"], [10, 45, 40, 5])
 
-        a["q43"] = pick_yes(0.55)
+        a["q43"] = pick_yes(0.85)
         # Always generate q44 regardless of q43 answer
-        a["q44"] = pick_weighted(
-            ["Very low", "Low", "Moderate", "High", "Very high"],
-            [5, 15, 35, 30, 15],
-        )
+        a["q44"] = pick_yes(0.80)
 
         a["q45"] = pick_weighted(
             ["Very low", "Low", "Moderate", "High", "Very high"],
-            [2, 8, 35, 35, 20],
+            [2, 8, 30, 40, 20],
         )
-        a["q46"] = pick_yes(0.75)
+        a["q46"] = pick_yes(0.55)
+
+        a["q47"] = pick_weighted(
+            ["Fuel cost", "Fish stock decline", "Gear damage", "Pollution", "Inadequate storage facilities", "Credit constraints"],
+            [35, 20, 15, 15, 5, 10],
+        )
 
         # Q48 fixed ranking
         a["q48"] = {
@@ -334,33 +335,35 @@ class AnswerEngine:
         }
 
         # --- Section C ---
-        a["q49"] = pick_multiple_weighted(
-            Q49_THEMES,
-            [30, 35, 15, 25, 20],
-            min_count=2,
-            max_count=4,
+        income_effects = pick_multiple_weighted(
+            ["my catch is reduced", "cost of operation is too high", "we get lower prices for fish", "our income is irregular", "we lose many fishing days"],
+            [30, 35, 20, 25, 20],
+            min_count=1,
+            max_count=2,
         )
-        a["q50"] = round(random.uniform(125, 350), 1)
-        a["q51"] = round(random.uniform(45, 80), 2)
-        a["q52"] = income_for_age(age)
+        a["q49"] = " and ".join(income_effects).capitalize() + "."
+
+        a["q50"] = random.randint(100, 400)
+        a["q51"] = random.randint(40, 90)
+        a["q52"] = int(income_for_age(age))
 
         a["q53"] = pick_weighted(
             ["Very unstable", "Unstable", "Moderately stable", "Stable", "Very stable"],
             [15, 30, 30, 20, 5],
         )
-        a["q54"] = pick_weighted(["Always", "Often", "Sometimes", "Rarely"], [10, 45, 40, 5])
-        a["q55"] = pick_yes(0.75)
+        a["q54"] = pick_weighted(["Always", "Often", "Sometimes", "Rarely"], [5, 30, 55, 10])
+        a["q55"] = pick_yes(0.82)
         a["q56"] = pick_yes(0.80)
         # Always generate q57, q58 regardless of q56 answer
-        a["q57"] = pick_weighted(["Peak season", "Lean season", "Same for all seasons"], [60, 25, 15])
-        a["q58"] = pick_weighted(["Peak season", "Lean season"], [40, 60])
+        a["q57"] = pick_weighted(["Peak season", "Lean season", "Same for all seasons"], [70, 10, 20])
+        a["q58"] = pick_weighted(["Peak season", "Lean season"], [15, 85])
 
-        a["q59"] = pick_yes(0.10)  # 90% no
-        a["q60"] = pick_yes(0.15)  # 85% no
-        a["q61"] = pick_yes(0.44)  # 56% no
+        a["q59"] = pick_yes(0.15)
+        a["q60"] = pick_yes(0.15)
+        a["q61"] = pick_yes(0.44)
         a["q62"] = pick_yes(0.77)
         a["q63"] = pick_yes(0.90)
-        a["q64"] = pick_yes(0.50)
+        a["q64"] = pick_yes(0.75)
         a["q65"] = pick_weighted(
             ["Very weak", "Weak", "Moderate", "Strong", "Very strong"],
             [10, 25, 35, 22, 8],
@@ -371,59 +374,50 @@ class AnswerEngine:
         )
 
         # --- Section D ---
-        # Q67 weighted choices (form uses checkboxes not free text)
-        a["q67"] = pick_multiple_weighted(
-            ["Credit facilities", "Cold storage facilities", "Premix fuel supply",
-             "Fishing equipment", "Harbour infrastructure improvement", "Training programmes"],
+        measures = pick_multiple_weighted(
+            ["provide cheap credit and loans", "build cold storage facilities", "regular premix fuel supply", "help us with cheap fishing equipment", "improve harbour infrastructure", "give us training programmes"],
             [25, 20, 35, 22, 28, 15],
-            min_count=2,
-            max_count=4,
-        )
-
-        a["q68"] = pick_yes(0.57)
-        # Always generate q69 regardless of q68 answer
-        a["q69"] = pick_yes(0.36)  # 64% no
-
-        a["q70"] = pick_yes(0.49)  # 51% no
-        # Always generate q71 regardless of q70 answer
-        a["q71"] = pick_multiple_weighted(
-            ["Fuel subsidy", "Training", "Fishing equipment support", "Credit support", "Other (Specify)"],
-            [40, 15, 28, 35, 5],
             min_count=1,
             max_count=2,
         )
+        a["q67"] = " and ".join(measures).capitalize() + "."
 
-        # Q72: 3,1,4,5,6,2 = Premix/fuel mapping to form options
-        a["q72"] = pick_multiple_weighted(
+        a["q68"] = pick_yes(0.57)
+        a["q69"] = pick_yes(0.20)
+        a["q70"] = pick_yes(0.36)
+        
+        # Always generate q71 regardless of q70 answer
+        a["q71"] = pick_weighted(
             ["Fuel subsidy", "Training", "Fishing equipment support", "Credit support", "Other (Specify)"],
-            [35, 8, 30, 28, 5],
-            min_count=1,
-            max_count=3,
+            [40, 15, 28, 15, 2],
+        )
+        if a["q71"] == "Other (Specify)":
+            a["q71a"] = "Free nets"
+
+        a["q72"] = pick_weighted(
+            ["Credit facilities", "Cold storage facilities", "Premix fuel supply", "Fishing equipment", "Harbour infrastructure improvement", "Training programmes"],
+            [25, 20, 30, 12, 10, 3],
         )
 
         a["q73"] = pick_yes(0.71)
         a["q74"] = pick_yes(0.85)
-        a["q75"] = pick_yes(0.28)  # 72% no
+        a["q75"] = pick_yes(0.28)
         a["q76"] = "Yes"
         a["q77"] = pick_yes(0.85)
-
-        # Q78: mostly yes for older ages
+        
         yes_pct = 0.65 + (age - 25) * 0.02
         a["q78"] = pick_yes(min(0.95, yes_pct))
 
-        # Q79: broken English matching Q67 checkbox selections
-        q67_map = {
-            "Credit facilities": "we need credit and loan for canoe",
-            "Cold storage facilities": "cold store no dey, fish spoil quick",
-            "Premix fuel supply": "premix fuel shortage delay our trip",
-            "Fishing equipment": "govment shud help with net and canoe",
-            "Harbour infrastructure improvement": "harbour need repair, boats cant land proper",
-            "Training programmes": "training from govment will help us small",
+        q72_map = {
+            "Credit facilities": "We need credit and loan for canoe. Govment shud help us.",
+            "Cold storage facilities": "Cold store no dey here. We need cold store so fish no spoil.",
+            "Premix fuel supply": "Premix fuel price too high and shortage dey. Help us with fuel.",
+            "Fishing equipment": "Fishing gear and net too cost. We need help with equipment.",
+            "Harbour infrastructure improvement": "Harbour need repair. Boats cant land proper.",
+            "Training programmes": "Training from govment will help us small.",
         }
-        parts = [degrade_english(q67_map.get(c, c)) for c in a.get("q67", [])]
-        if not parts:
-            parts = [degrade_english(random.choice(Q79_TEMPLATES))]
-        a["q79"] = ". ".join(parts[:3]) + "."
+        rec = q72_map.get(a["q72"], "Govment should reduce fuel price and give premix on time")
+        a["q79"] = degrade_english(rec)
 
         a["_meta"] = {
             "respondent_index": respondent_index + 1,
