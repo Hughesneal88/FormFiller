@@ -1,0 +1,93 @@
+Para 0: DATA ANALYSIS
+Para 2: Background of Respondents
+Para 3: Location of Respondents
+Table 0: 8x3 - Header: ['Location', 'Frequency', 'Percentage %']
+  --> Drawing/Shape 0
+Para 12: Gender of Respondents
+Table 1: 4x3 - Header: ['Gender', 'Frequency', 'Percentage']
+  --> Drawing/Shape 1
+Para 24: Age of Respondents
+Table 2: 7x3 - Header: ['Age Group (Years)', 'Frequency', 'Percentage %']
+  --> Drawing/Shape 2
+Para 28: Marital Status of Respondents
+Table 3: 4x3 - Header: ['Marital Status', 'Frequency', 'Percentage %']
+  --> Drawing/Shape 3
+Para 32: Level of Education of Respondents
+Table 4: 6x3 - Header: ['Education level', 'Frequency', 'Percentage %']
+  --> Drawing/Shape 4
+Para 36: Religion of Respondents
+Table 5: 4x3 - Header: ['Religion', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 5
+Para 40: Household Size of Respondents
+Table 6: 5x3 - Header: ['Household Size(Group)', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 6
+Para 44: Major Occupation of Respondents
+Table 7: 4x3 - Header: ['Chicken Farming', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 7
+Para 48: Other Occupation
+Table 8: 4x3 - Header: ['Occupation', 'Frequency', 'Percentage %']
+  --> Drawing/Shape 8
+Para 52: Income Earners in the Household of Respondents
+Table 9: 8x3 - Header: ['Income Earners', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 9
+Para 56: Total Household Income of Respondents
+Table 10: 5x3 - Header: ['Total Income', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 10
+Para 61: Dependents in Households of Respondents
+Table 11: 5x3 - Header: ['No of Dependents', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 11
+Para 65: Associations/FBO of Respondents
+Table 12: 4x3 - Header: ['Assoc/FBO', 'Frequency', 'Percentage']
+  --> Drawing/Shape 12
+Para 70: Nature of Credit
+Para 71: Applied for Credit
+Table 13: 4x3 - Header: ['Applied for Credit', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 13
+Para 81: Received Credit
+Table 14: 4x3 - Header: ['Received Credit', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 14
+Para 85: Main Source of Credit
+Table 15: 8x3 - Header: ['Source of Credit', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 15
+Para 89: Amount of Credit Received
+Table 16: 7x3 - Header: ['Credit Amount(GHS)', 'Frequency', 'Percentage%']
+Table 17: 2x5 - Header: ['Mean(GHS)', 'Median(GHS)', 'Minimum(GHS)', 'Maximum(GHS)']
+  --> Drawing/Shape 16
+Para 96: Interest Rate
+Table 18: 5x3 - Header: ['Interest Rate %', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 17
+Para 101: Repayment Period
+Table 19: 5x3 - Header: ['Repayment Period', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 18
+Para 106: Factors Influencing Access to Credit
+Para 107: Technical Factors
+Table 20: 4x3 - Header: ['Poultry Farming Experience', 'Frequency', 'Percentage%']
+Table 21: 5x3 - Header: ['Flock Size at Time of Application', 'Frequency', 'Percentage%']
+Table 22: 3x3 - Header: ['Received Poultry Training Before', 'Frequency', 'Percentage%']
+Para 114: Institutional Factors
+Table 23: 9x4 - Header: ['Variable', 'Yes Frequency (%)', 'No Frequency (%)', 'Total (n = 75)']
+Para 117: Nature of Farm Scalability
+Para 118: Distribution of Farms Based on their Revenue Growth Rate
+Table 24: 9x4 - Header: ['Range', 'Revenue Growth Rate Bracket', 'Frequency', 'Percentage%']
+  --> Drawing/Shape 19
+Table 25: 5x3 - Header: ['Scalability Category', 'Frequency', 'Percentage%']
+Table 26: 2x5 - Header: ['Mean Growth Rate %', 'Median Growth Rate %', 'Minimum Growth Rate %', 'Maximum Growth Rate %']
+Para 127: Influence of Access to Credit on Farm Scalability
+Para 128: Initial Capital Invested (GHS)
+Table 27: 6x3 - Header: ['Capital Investment Bracket (GHS)', 'Frequency', 'Percentage%']
+Para 131: Current Flock Size
+Table 28: 6x3 - Header: ['Flock Size Bracket(Birds)', 'Frequency', 'Percentage%']
+Para 134: Average Feed Cost per Production Cycle(GHS)
+Table 29: 6x3 - Header: ['Feed Cost Bracket (GHS)', 'Frequency', 'Percentage%']
+Para 137: Number of Workers Employed
+Table 30: 6x3 - Header: ['Number of Workers', 'Frequency', 'Percentage%']
+Para 140: Number of Production Cycles per Year
+Table 31: 7x3 - Header: ['Production Cycles per Year', 'Frequency', 'Percentage%']
+Para 143: Access to Poultry Inputs
+Table 32: 4x3 - Header: ['Input Access', 'Frequency', 'Percentage%']
+Para 146: Reinvestment of Farm Revenue
+Table 33: 4x3 - Header: ['Reinvests Revenue into Farm', 'Frequency', 'Percentage%']
+Para 149: Percentage of Revenue Reinvested
+Table 34: 7x3 - Header: ['Revenue Reinvestment Rate%', 'Frequency', 'Percentage%']
+Para 152: Quality of Feed Used
+Table 35: 5x3 - Header: ['Feed Quality Rating', 'Frequency', 'Percentage%']
